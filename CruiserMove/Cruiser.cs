@@ -142,7 +142,6 @@ namespace CruiserMove
         {
             Pen pen = new Pen(Color.Black);
             Brush addcolor = new SolidBrush(DopColor);
-
             // теперь отрисуем основной кузов крейсера
             //границы крейсера и кузов
             Brush br = new SolidBrush(MainColor);
