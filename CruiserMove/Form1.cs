@@ -12,7 +12,7 @@ namespace CruiserMove
 {
     public partial class cruiserMove : Form
     {
-        private Cruiser cruiser;
+        private ICruiser cruiser;
         public cruiserMove()
         {
             InitializeComponent();
@@ -27,18 +27,8 @@ namespace CruiserMove
             cruiser.DrawTransport(gr);
             pictureBoxCruiser.Image = bmp;
         }
-        /// <summary>
-        /// Обработка нажатия кнопки "Создать"
-        /// </summary>
-        private void create_Click(object sender, EventArgs e)
-        {
-            Random rnd = new Random();
-            cruiser = new Cruiser();
-            cruiser.Init(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Gray,
-           Color.LightGray, true, true, true); cruiser.SetPosition(rnd.Next(0, pictureBoxCruiser.Width - cruiser.CruiserWidth),
-           rnd.Next(0, pictureBoxCruiser.Height - cruiser.CruiserHeight), pictureBoxCruiser.Width, pictureBoxCruiser.Height);
-            Draw();
-        }
+
+
         /// <summary>
         /// Обработка нажатия кнопок управления
         /// </summary>
@@ -65,6 +55,25 @@ namespace CruiserMove
             }
             Draw();
 
+        }
+        /// <summary>
+        /// Обработка нажатия кнопки "Создать"
+        /// </summary>
+        private void createSimpCruiser_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            cruiser = new CruiserSimp(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Gray);
+            cruiser.SetPosition(rnd.Next(10, 200), rnd.Next(10, 200), pictureBoxCruiser.Width,
+           pictureBoxCruiser.Height);
+            Draw();
+        }
+
+        private void createWarCruiser_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            cruiser = new WarCruiser(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Gray, Color.LightGray, true, true, true);
+            cruiser.SetPosition(rnd.Next(10, 200), rnd.Next(10, 200), pictureBoxCruiser.Width, pictureBoxCruiser.Height);
+            Draw();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CruiserMove
 {
-    enum Direction
+    public enum Direction
     {
         Left, 
         Right,
