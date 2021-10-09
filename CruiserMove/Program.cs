@@ -16,7 +16,7 @@ namespace CruiserMove
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new cruiserMove());
+            Application.Run(new FormParking());
         }
     }
 }

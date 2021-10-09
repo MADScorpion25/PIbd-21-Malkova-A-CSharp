@@ -37,8 +37,7 @@ namespace CruiserMove
         /// <param name="mainColor">Основной цвет кузова</param>
         /// <param name="cruiserWidth">Ширина отрисовки крейсера</param>
         /// <param name="cruiserHeight">Высота отрисовки крейсера</param>
-        protected CruiserSimp(int maxSpeed, float weight, Color mainColor, int cruiserWidth, int
-       cruiserHeight)
+        protected CruiserSimp(int maxSpeed, float weight, Color mainColor, int cruiserWidth, int cruiserHeight)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
@@ -80,6 +79,7 @@ namespace CruiserMove
             g.FillRectangle(turb, startPosX - 5, startPosY + 10, 5, 17);
             g.FillRectangle(turb, startPosX - 5, startPosY + 33, 5, 17);
         }
+       
 
         public override void MoveTransport(Direction direction)
         {

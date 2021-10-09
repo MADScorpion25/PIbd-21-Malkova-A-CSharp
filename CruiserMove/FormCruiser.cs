@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace CruiserMove
 {
-    public partial class cruiserMove : Form
+    public partial class FormCruiser : Form
     {
         private ICruiser cruiser;
-        public cruiserMove()
+        public FormCruiser()
         {
             InitializeComponent();
         }
@@ -24,10 +24,20 @@ namespace CruiserMove
         {
             Bitmap bmp = new Bitmap(pictureBoxCruiser.Width, pictureBoxCruiser.Height);
             Graphics gr = Graphics.FromImage(bmp);
-            cruiser.DrawTransport(gr);
+            cruiser?.DrawTransport(gr);
             pictureBoxCruiser.Image = bmp;
-        }
 
+        }
+        /// <summary>
+        /// Передача крейсера на форму
+        /// </summary>
+        /// <param name="cruiser"></param>
+        public void SetCruiser(ICruiser cruiser, int posX, int posY)
+        {
+            this.cruiser = cruiser;
+            cruiser.SetPosition(posX, posY, pictureBoxCruiser.Width, pictureBoxCruiser.Height);
+            Draw();
+        }
 
         /// <summary>
         /// Обработка нажатия кнопок управления
@@ -41,16 +51,16 @@ namespace CruiserMove
             switch (name)
             {
                 case "buttonUp":
-                    cruiser.MoveTransport(Direction.Up);
+                    cruiser?.MoveTransport(Direction.Up);
                     break;
                 case "buttonDown":
-                    cruiser.MoveTransport(Direction.Down);
+                    cruiser?.MoveTransport(Direction.Down);
                     break;
                 case "buttonLeft":
-                    cruiser.MoveTransport(Direction.Left);
+                    cruiser?.MoveTransport(Direction.Left);
                     break;
                 case "buttonRight":
-                    cruiser.MoveTransport(Direction.Right);
+                    cruiser?.MoveTransport(Direction.Right);
                     break;
             }
             Draw();
@@ -59,21 +69,6 @@ namespace CruiserMove
         /// <summary>
         /// Обработка нажатия кнопки "Создать"
         /// </summary>
-        private void createSimpCruiser_Click(object sender, EventArgs e)
-        {
-            Random rnd = new Random();
-            cruiser = new CruiserSimp(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Gray);
-            cruiser.SetPosition(rnd.Next(10, 200), rnd.Next(10, 200), pictureBoxCruiser.Width,
-           pictureBoxCruiser.Height);
-            Draw();
-        }
 
-        private void createWarCruiser_Click(object sender, EventArgs e)
-        {
-            Random rnd = new Random();
-            cruiser = new WarCruiser(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Gray, Color.LightGray, true, true, true);
-            cruiser.SetPosition(rnd.Next(10, 200), rnd.Next(10, 200), pictureBoxCruiser.Width, pictureBoxCruiser.Height);
-            Draw();
-        }
     }
 }
