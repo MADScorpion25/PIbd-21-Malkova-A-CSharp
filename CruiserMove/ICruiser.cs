@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CruiserMove
 {
-    interface ICruiser
+    public interface ICruiser
     {
         /// <summary>
         /// Установка позиции

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CruiserMove
 {
-    class WarCruiser : CruiserSimp
+    public class WarCruiser : CruiserSimp
     {
         public Color DopColor { private set; get; }
         /// <summary>
@@ -79,5 +79,6 @@ namespace CruiserMove
                 g.DrawEllipse(parking, startPosX + 10, startPosY + 15, 30, 30);
             }
         }
+        
     }
 }
