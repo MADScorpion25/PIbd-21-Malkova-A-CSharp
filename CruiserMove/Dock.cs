@@ -69,7 +69,6 @@ namespace CruiserMove
             }
             return -1;
         }
-
         /// <summary>
         /// Перегрузка оператора вычитания
         /// Логика действия: с парковки забираем крейсер
@@ -120,7 +119,6 @@ namespace CruiserMove
                 g.DrawLine(pen, i * _placeSizeWidth, 0, i * _placeSizeWidth,
                (pictureHeight / _placeSizeHeight) * _placeSizeHeight);
             }
-          
         }
     }
 }
