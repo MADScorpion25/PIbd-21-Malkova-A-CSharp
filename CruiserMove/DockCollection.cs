@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CruiserMove
 {
-    class ParkingCollection
+    class DockCollection
     {
         /// <summary>
         /// Словарь (хранилище) с парковками
@@ -30,7 +30,7 @@ namespace CruiserMove
         /// </summary>
         /// <param name="pictureWidth"></param>
         /// <param name="pictureHeight"></param>
-        public ParkingCollection(int pictureWidth, int pictureHeight)
+        public DockCollection(int pictureWidth, int pictureHeight)
         {
             parkingStages = new Dictionary<string, Parking<Vehicle>>();
             this.pictureWidth = pictureWidth;

@@ -12,7 +12,7 @@ namespace CruiserMove
 {
     public partial class FormDock : Form
     {
-        private readonly ParkingCollection parkingCollection;
+        private readonly DockCollection parkingCollection;
         /// <summary>
         /// Объект от класса-парковки
         /// </summary>
@@ -20,7 +20,7 @@ namespace CruiserMove
         public FormDock()
         {
             InitializeComponent();
-            parkingCollection = new ParkingCollection(parkingBox.Width,
+            parkingCollection = new DockCollection(parkingBox.Width,
            parkingBox.Height);
         }
         /// <summary>
