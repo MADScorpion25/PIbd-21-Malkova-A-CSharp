@@ -11,12 +11,16 @@ namespace CruiserMove
     /// Параметризованный класс для хранения набора объектов от интерфейса ITransport
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public partial class Parking<T> where T : class, ICruiser
+    public partial class Parking<T> where T : class, ITransport
     {
         /// <summary>
-        /// Массив объектов, которые храним
+        /// Список объектов, которые храним
         /// </summary>
-        private readonly T[] _places;
+        private readonly List<T> _places;
+        /// <summary>
+        /// Максимальное количество мест на парковке
+        /// </summary>
+        private readonly int _maxCount = 18;
         /// <summary>
         /// Ширина окна отрисовки
         /// </summary>
@@ -43,9 +47,10 @@ namespace CruiserMove
         {
             int width = picWidth / _placeSizeWidth;
             int height = picHeight / _placeSizeHeight;
-            _places = new T[width * height];
+            _maxCount = width * height;
             pictureWidth = picWidth;
             pictureHeight = picHeight;
+            _places = new List<T>();
         }
         /// <summary>
         /// Перегрузка оператора сложения
@@ -56,13 +61,11 @@ namespace CruiserMove
         /// <returns></returns>
         public static int operator +(Parking<T> p, T cruiser)
         {
-            for(int i = 0; i < p._places.Length; i++)
+            if (p._maxCount <= p._places.Count) return -1;
+            for(int i = 0; i < p._places.Count + 1; i++)
             {
-                if(p._places[i] == null)
-                {
-                    p._places[i] = cruiser;
-                    return i;
-                }
+                p._places.Add(cruiser);
+                return i;
             }
             return -1;
         }
@@ -78,10 +81,10 @@ namespace CruiserMove
         {
             T removedCruiser;
 
-            if (index > -1 && index < p._places.Length && p._places[index] != null)
+            if (index > -1 && index < p._places.Count && p._places[index] != null)
             {
                 removedCruiser = p._places[index];
-                p._places[index] = null;
+                p._places.RemoveAt(index);
                 return removedCruiser;
             }
             return null;
@@ -94,7 +97,7 @@ namespace CruiserMove
         public void Draw(Graphics g)
         {
             DrawMarking(g);
-            for (int i = 0; i < _places.Length; i++)
+            for (int i = 0; i < _places.Count; ++i)
             {
                 _places[i]?.SetPosition((i % _parkPlacesWidth) * (_placeSizeWidth + 10), (i / _parkPlacesWidth) * _placeSizeHeight + 10, pictureWidth, pictureHeight);
                 _places[i]?.DrawTransport(g);
@@ -117,6 +120,7 @@ namespace CruiserMove
                 g.DrawLine(pen, i * _placeSizeWidth, 0, i * _placeSizeWidth,
                (pictureHeight / _placeSizeHeight) * _placeSizeHeight);
             }
+          
         }
     }
 }

@@ -12,7 +12,7 @@ namespace CruiserMove
 {
     public partial class FormCruiser : Form
     {
-        private ICruiser cruiser;
+        private ITransport cruiser;
         public FormCruiser()
         {
             InitializeComponent();
@@ -32,7 +32,7 @@ namespace CruiserMove
         /// Передача крейсера на форму
         /// </summary>
         /// <param name="cruiser"></param>
-        public void SetCruiser(ICruiser cruiser, int posX, int posY)
+        public void SetCruiser(ITransport cruiser, int posX, int posY)
         {
             this.cruiser = cruiser;
             cruiser.SetPosition(posX, posY, pictureBoxCruiser.Width, pictureBoxCruiser.Height);
@@ -64,7 +64,6 @@ namespace CruiserMove
                     break;
             }
             Draw();
-
         }
         /// <summary>
         /// Обработка нажатия кнопки "Создать"

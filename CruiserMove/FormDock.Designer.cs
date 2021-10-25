@@ -1,7 +1,7 @@
 ﻿
 namespace CruiserMove
 {
-    partial class FormParking
+    partial class FormDock
     {
         /// <summary>
         /// Required designer variable.
@@ -33,9 +33,14 @@ namespace CruiserMove
             this.setSimpleCruiser = new System.Windows.Forms.Button();
             this.setWarCruiser = new System.Windows.Forms.Button();
             this.takeCruiser = new System.Windows.Forms.GroupBox();
-            this.place = new System.Windows.Forms.Label();
-            this.parkingPlace = new System.Windows.Forms.MaskedTextBox();
             this.getCruiser = new System.Windows.Forms.Button();
+            this.parkingPlace = new System.Windows.Forms.MaskedTextBox();
+            this.place = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.parkingName = new System.Windows.Forms.TextBox();
+            this.addParking = new System.Windows.Forms.Button();
+            this.listBoxParkings = new System.Windows.Forms.ListBox();
+            this.removeParking = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.parkingBox)).BeginInit();
             this.takeCruiser.SuspendLayout();
             this.SuspendLayout();
@@ -51,7 +56,7 @@ namespace CruiserMove
             // 
             // setSimpleCruiser
             // 
-            this.setSimpleCruiser.Location = new System.Drawing.Point(1087, 12);
+            this.setSimpleCruiser.Location = new System.Drawing.Point(1088, 318);
             this.setSimpleCruiser.Name = "setSimpleCruiser";
             this.setSimpleCruiser.Size = new System.Drawing.Size(158, 68);
             this.setSimpleCruiser.TabIndex = 1;
@@ -61,7 +66,7 @@ namespace CruiserMove
             // 
             // setWarCruiser
             // 
-            this.setWarCruiser.Location = new System.Drawing.Point(1087, 96);
+            this.setWarCruiser.Location = new System.Drawing.Point(1088, 402);
             this.setWarCruiser.Name = "setWarCruiser";
             this.setWarCruiser.Size = new System.Drawing.Size(158, 68);
             this.setWarCruiser.TabIndex = 2;
@@ -74,30 +79,12 @@ namespace CruiserMove
             this.takeCruiser.Controls.Add(this.getCruiser);
             this.takeCruiser.Controls.Add(this.parkingPlace);
             this.takeCruiser.Controls.Add(this.place);
-            this.takeCruiser.Location = new System.Drawing.Point(1087, 197);
+            this.takeCruiser.Location = new System.Drawing.Point(1088, 503);
             this.takeCruiser.Name = "takeCruiser";
             this.takeCruiser.Size = new System.Drawing.Size(158, 126);
             this.takeCruiser.TabIndex = 3;
             this.takeCruiser.TabStop = false;
             this.takeCruiser.Text = "Take Cruiser";
-            // 
-            // place
-            // 
-            this.place.AutoSize = true;
-            this.place.Location = new System.Drawing.Point(11, 49);
-            this.place.Name = "place";
-            this.place.Size = new System.Drawing.Size(47, 17);
-            this.place.TabIndex = 0;
-            this.place.Text = "Place:";
-            // 
-            // parkingPlace
-            // 
-            this.parkingPlace.Location = new System.Drawing.Point(81, 46);
-            this.parkingPlace.Mask = "00";
-            this.parkingPlace.Name = "parkingPlace";
-            this.parkingPlace.Size = new System.Drawing.Size(58, 22);
-            this.parkingPlace.TabIndex = 1;
-            this.parkingPlace.ValidatingType = typeof(int);
             // 
             // getCruiser
             // 
@@ -109,11 +96,80 @@ namespace CruiserMove
             this.getCruiser.UseVisualStyleBackColor = true;
             this.getCruiser.Click += new System.EventHandler(this.getCruiser_Click);
             // 
+            // parkingPlace
+            // 
+            this.parkingPlace.Location = new System.Drawing.Point(81, 46);
+            this.parkingPlace.Mask = "00";
+            this.parkingPlace.Name = "parkingPlace";
+            this.parkingPlace.Size = new System.Drawing.Size(58, 22);
+            this.parkingPlace.TabIndex = 1;
+            this.parkingPlace.ValidatingType = typeof(int);
+            // 
+            // place
+            // 
+            this.place.AutoSize = true;
+            this.place.Location = new System.Drawing.Point(11, 49);
+            this.place.Name = "place";
+            this.place.Size = new System.Drawing.Size(47, 17);
+            this.place.TabIndex = 0;
+            this.place.Text = "Place:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1140, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 17);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Parkings";
+            // 
+            // parkingName
+            // 
+            this.parkingName.Location = new System.Drawing.Point(1088, 20);
+            this.parkingName.Name = "parkingName";
+            this.parkingName.Size = new System.Drawing.Size(158, 22);
+            this.parkingName.TabIndex = 5;
+            // 
+            // addParking
+            // 
+            this.addParking.Location = new System.Drawing.Point(1088, 49);
+            this.addParking.Name = "addParking";
+            this.addParking.Size = new System.Drawing.Size(158, 28);
+            this.addParking.TabIndex = 6;
+            this.addParking.Text = "Add Parking";
+            this.addParking.UseVisualStyleBackColor = true;
+            this.addParking.Click += new System.EventHandler(this.addParking_Click);
+            // 
+            // listBoxParkings
+            // 
+            this.listBoxParkings.FormattingEnabled = true;
+            this.listBoxParkings.ItemHeight = 16;
+            this.listBoxParkings.Location = new System.Drawing.Point(1088, 83);
+            this.listBoxParkings.Name = "listBoxParkings";
+            this.listBoxParkings.Size = new System.Drawing.Size(158, 148);
+            this.listBoxParkings.TabIndex = 7;
+            this.listBoxParkings.SelectedIndexChanged += new System.EventHandler(this.listBoxParkings_SelectedIndexChanged);
+            // 
+            // removeParking
+            // 
+            this.removeParking.Location = new System.Drawing.Point(1088, 237);
+            this.removeParking.Name = "removeParking";
+            this.removeParking.Size = new System.Drawing.Size(158, 28);
+            this.removeParking.TabIndex = 8;
+            this.removeParking.Text = "Remove Parking";
+            this.removeParking.UseVisualStyleBackColor = true;
+            this.removeParking.Click += new System.EventHandler(this.removeParking_Click);
+            // 
             // FormParking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1268, 682);
+            this.Controls.Add(this.removeParking);
+            this.Controls.Add(this.listBoxParkings);
+            this.Controls.Add(this.addParking);
+            this.Controls.Add(this.parkingName);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.takeCruiser);
             this.Controls.Add(this.setWarCruiser);
             this.Controls.Add(this.setSimpleCruiser);
@@ -124,6 +180,7 @@ namespace CruiserMove
             this.takeCruiser.ResumeLayout(false);
             this.takeCruiser.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -136,5 +193,10 @@ namespace CruiserMove
         private System.Windows.Forms.Button getCruiser;
         private System.Windows.Forms.MaskedTextBox parkingPlace;
         private System.Windows.Forms.Label place;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox parkingName;
+        private System.Windows.Forms.Button addParking;
+        private System.Windows.Forms.ListBox listBoxParkings;
+        private System.Windows.Forms.Button removeParking;
     }
 }

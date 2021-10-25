@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CruiserMove
 {
-    public abstract class Vehicle : ICruiser
+    public abstract class Vehicle : ITransport
     {
         /// <summary>
         /// Левая координата отрисовки крейсера
