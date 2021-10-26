@@ -16,6 +16,7 @@ namespace CruiserMove
         public FormCruiserConfig()
         {
             InitializeComponent();
+            panelActiveBorder.MouseDown += panelColor_MouseDown;
             panelActiveCaption.MouseDown += panelColor_MouseDown;
             panelControlDark.MouseDown += panelColor_MouseDown;
             panelGradientActiveCaption.MouseDown += panelColor_MouseDown;
@@ -84,6 +85,7 @@ namespace CruiserMove
         {
             Color mainColor = (Color)e.Data.GetData(typeof(Color));
             cruiser.SetMainColor(mainColor);
+            DrawCruiser();
         }
 
         private void labelMainColor_DragEnter(object sender, DragEventArgs e)
@@ -96,7 +98,6 @@ namespace CruiserMove
             {
                 e.Effect = DragDropEffects.None;
             }
-            DrawCruiser();
         }
 
         private void labelAdditionColor_DragDrop(object sender, DragEventArgs e)
@@ -104,6 +105,7 @@ namespace CruiserMove
             Color additionColor = (Color) e.Data.GetData(typeof(Color));
             WarCruiser warCruiser = (WarCruiser)cruiser;
             warCruiser.SetDopColor(additionColor);
+            DrawCruiser();
         }
 
         private void labelAdditionColor_DragEnter(object sender, DragEventArgs e)
@@ -118,10 +120,10 @@ namespace CruiserMove
             }
             DrawCruiser();
         }
-
         private void panelColor_MouseDown(object sender, MouseEventArgs e)
         {
-            panelColor.DoDragDrop(panelColor.BackColor, DragDropEffects.Move | DragDropEffects.Copy);
+            Panel panel = (Panel)sender;
+            panel.DoDragDrop(panel.BackColor, DragDropEffects.Move |DragDropEffects.Copy);
         }
     }
 }

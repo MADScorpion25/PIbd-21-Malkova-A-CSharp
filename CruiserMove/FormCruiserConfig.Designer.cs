@@ -52,7 +52,7 @@ namespace CruiserMove
             this.panelMediumPurple = new System.Windows.Forms.Panel();
             this.panelActiveCaption = new System.Windows.Forms.Panel();
             this.panelRed = new System.Windows.Forms.Panel();
-            this.panelColor = new System.Windows.Forms.Panel();
+            this.panelActiveBorder = new System.Windows.Forms.Panel();
             this.addButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.pictureCruiserPanel.SuspendLayout();
@@ -239,7 +239,7 @@ namespace CruiserMove
             this.groupBox1.Controls.Add(this.panelMediumPurple);
             this.groupBox1.Controls.Add(this.panelActiveCaption);
             this.groupBox1.Controls.Add(this.panelRed);
-            this.groupBox1.Controls.Add(this.panelColor);
+            this.groupBox1.Controls.Add(this.panelActiveBorder);
             this.groupBox1.Location = new System.Drawing.Point(761, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(478, 257);
@@ -333,14 +333,13 @@ namespace CruiserMove
             this.panelRed.Size = new System.Drawing.Size(60, 60);
             this.panelRed.TabIndex = 2;
             // 
-            // panelColor
+            // panelActiveBorder
             // 
-            this.panelColor.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panelColor.Location = new System.Drawing.Point(29, 85);
-            this.panelColor.Name = "panelColor";
-            this.panelColor.Size = new System.Drawing.Size(60, 60);
-            this.panelColor.TabIndex = 0;
-            this.panelColor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            this.panelActiveBorder.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panelActiveBorder.Location = new System.Drawing.Point(29, 85);
+            this.panelActiveBorder.Name = "panelActiveBorder";
+            this.panelActiveBorder.Size = new System.Drawing.Size(60, 60);
+            this.panelActiveBorder.TabIndex = 0;
             // 
             // addButton
             // 
@@ -410,7 +409,7 @@ namespace CruiserMove
         private System.Windows.Forms.Panel panelMediumPurple;
         private System.Windows.Forms.Panel panelActiveCaption;
         private System.Windows.Forms.Panel panelRed;
-        private System.Windows.Forms.Panel panelColor;
+        private System.Windows.Forms.Panel panelActiveBorder;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button cancelButton;
     }
