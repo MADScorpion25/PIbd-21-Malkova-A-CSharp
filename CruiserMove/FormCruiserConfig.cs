@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static CruiserMove.Program;
 
 namespace CruiserMove
 {
     public partial class FormCruiserConfig : Form
     {
-        ITransport cruiser = null;
+        private ITransport cruiser = null;
+        private Action<Vehicle> eventAddCruiser;
         public FormCruiserConfig()
         {
             InitializeComponent();
@@ -31,8 +33,6 @@ namespace CruiserMove
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-       
-
         private void DrawCruiser()
         {
             if (cruiser != null)
@@ -44,7 +44,6 @@ namespace CruiserMove
                 pictureBoxCruiser.Image = bmp;
             }
         }
-
         private void pictureCruiserPanel_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.Text))
@@ -56,38 +55,33 @@ namespace CruiserMove
                 e.Effect = DragDropEffects.None;
             }
         }
-
         private void pictureCruiserPanel_DragDrop(object sender, DragEventArgs e)
         {
             switch (e.Data.GetData(DataFormats.Text).ToString())
             {
                 case "Обычный крейсер":
-                    cruiser = new CruiserSimp(100, 500, Color.White);
+                    cruiser = new CruiserSimp(Convert.ToInt32(numericMaxSpeed.Value), Convert.ToInt32(numericWeight.Value), Color.White);
                     break;
                 case "Военный крейсер":
-                    cruiser = new WarCruiser(100, 500, Color.White, Color.Black, true, true, true);
+                    cruiser = new WarCruiser(Convert.ToInt32(numericMaxSpeed.Value), Convert.ToInt32(numericWeight.Value), Color.White, Color.Black, setLocator.Checked, setHelicopterStation.Checked, setWeapons.Checked);
                     break;
             }
             DrawCruiser();
         }
-
         private void labelCruiser_MouseDown(object sender, MouseEventArgs e)
         {
             labelCruiser.DoDragDrop(labelCruiser.Text, DragDropEffects.Move |DragDropEffects.Copy);
         }
-
         private void labelWarCruiser_MouseDown(object sender, MouseEventArgs e)
         {
             labelWarCruiser.DoDragDrop(labelWarCruiser.Text, DragDropEffects.Move |DragDropEffects.Copy);
         }
-
         private void labelMainColor_DragDrop(object sender, DragEventArgs e)
         {
             Color mainColor = (Color)e.Data.GetData(typeof(Color));
             cruiser.SetMainColor(mainColor);
             DrawCruiser();
         }
-
         private void labelMainColor_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(typeof(Color)))
@@ -99,15 +93,14 @@ namespace CruiserMove
                 e.Effect = DragDropEffects.None;
             }
         }
-
         private void labelAdditionColor_DragDrop(object sender, DragEventArgs e)
         {
+            if (cruiser.GetType() != typeof(WarCruiser)) return;
             Color additionColor = (Color) e.Data.GetData(typeof(Color));
             WarCruiser warCruiser = (WarCruiser)cruiser;
             warCruiser.SetDopColor(additionColor);
             DrawCruiser();
         }
-
         private void labelAdditionColor_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(typeof(Color)))
@@ -124,6 +117,27 @@ namespace CruiserMove
         {
             Panel panel = (Panel)sender;
             panel.DoDragDrop(panel.BackColor, DragDropEffects.Move |DragDropEffects.Copy);
+        }
+        internal void AddEventB(Action<FormCruiserConfig> ev)
+        {
+            eventAddCruiser?.Invoke((Vehicle)cruiser);
+            Close();
+        }
+        internal void AddEvent(Action<Vehicle> ev)
+        {
+            if (eventAddCruiser == null)
+            {
+                eventAddCruiser = new Action<Vehicle>(ev);
+            }
+            else
+            {
+                eventAddCruiser += ev;
+            }
+        }
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            eventAddCruiser?.Invoke((Vehicle) cruiser);
+            Close();
         }
     }
 }

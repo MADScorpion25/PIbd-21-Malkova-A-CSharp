@@ -102,6 +102,8 @@ namespace CruiserMove
             // setWeapons
             // 
             this.setWeapons.AutoSize = true;
+            this.setWeapons.Checked = true;
+            this.setWeapons.CheckState = System.Windows.Forms.CheckState.Checked;
             this.setWeapons.Location = new System.Drawing.Point(202, 118);
             this.setWeapons.Name = "setWeapons";
             this.setWeapons.Size = new System.Drawing.Size(80, 21);
@@ -112,6 +114,8 @@ namespace CruiserMove
             // setHelicopterStation
             // 
             this.setHelicopterStation.AutoSize = true;
+            this.setHelicopterStation.Checked = true;
+            this.setHelicopterStation.CheckState = System.Windows.Forms.CheckState.Checked;
             this.setHelicopterStation.Location = new System.Drawing.Point(202, 77);
             this.setHelicopterStation.Name = "setHelicopterStation";
             this.setHelicopterStation.Size = new System.Drawing.Size(187, 21);
@@ -122,6 +126,8 @@ namespace CruiserMove
             // setLocator
             // 
             this.setLocator.AutoSize = true;
+            this.setLocator.Checked = true;
+            this.setLocator.CheckState = System.Windows.Forms.CheckState.Checked;
             this.setLocator.Location = new System.Drawing.Point(202, 41);
             this.setLocator.Name = "setLocator";
             this.setLocator.Size = new System.Drawing.Size(86, 21);
@@ -269,7 +275,7 @@ namespace CruiserMove
             this.labelMainColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelMainColor.Location = new System.Drawing.Point(29, 28);
             this.labelMainColor.Name = "labelMainColor";
-            this.labelMainColor.Size = new System.Drawing.Size(140, 39);
+            this.labelMainColor.Size = new System.Drawing.Size(155, 39);
             this.labelMainColor.TabIndex = 10;
             this.labelMainColor.Text = "Основной цвет";
             this.labelMainColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -349,6 +355,7 @@ namespace CruiserMove
             this.addButton.TabIndex = 8;
             this.addButton.Text = "Добавить";
             this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // cancelButton
             // 

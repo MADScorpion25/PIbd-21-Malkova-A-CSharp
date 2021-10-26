@@ -64,7 +64,6 @@ namespace CruiserMove
             }
 
         }
-      
         /// <summary>
         /// Обработка нажатия кнопки "Забрать"
         /// </summary>
@@ -97,7 +96,6 @@ namespace CruiserMove
             parkingCollection.AddParking(parkingName.Text);
             ReloadLevels();
         }
-
         private void removeParking_Click(object sender, EventArgs e)
         {
             if (listBoxParkings.SelectedIndex > -1)
@@ -118,11 +116,25 @@ namespace CruiserMove
         {
             Draw();
         }
-
         private void setCruiserButton_Click(object sender, EventArgs e)
         {
-            FormCruiserConfig CruiserConfig = new FormCruiserConfig();
-            CruiserConfig.ShowDialog();
+            var formCarConfig = new FormCruiserConfig();
+            formCarConfig.AddEvent(AddCruiser);
+            formCarConfig.Show();
+        }
+        private void AddCruiser(Vehicle cruiser)
+        {
+            if (cruiser != null && listBoxParkings.SelectedIndex > -1)
+            {
+                if (parkingCollection[listBoxParkings.SelectedItem.ToString()] + cruiser > -1)
+                {
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Крейсер не удалось поставить");
+                }
+            }
         }
     }
 }

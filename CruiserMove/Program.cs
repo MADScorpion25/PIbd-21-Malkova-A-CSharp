@@ -8,6 +8,8 @@ namespace CruiserMove
 {
     static class Program
     {
+        public delegate void Action();
+        public delegate void addiButton(object sender, EventArgs e);
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
