@@ -43,16 +43,16 @@ namespace CruiserMove
             this.labelWarCruiser = new System.Windows.Forms.Label();
             this.labelCruiser = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panelColor = new System.Windows.Forms.Panel();
-            this.panelActiveCaption = new System.Windows.Forms.Panel();
-            this.panelControlDark = new System.Windows.Forms.Panel();
-            this.panelGradientActiveCaption = new System.Windows.Forms.Panel();
-            this.panelPaleTurquoise = new System.Windows.Forms.Panel();
-            this.panelActiveCaptionText = new System.Windows.Forms.Panel();
-            this.panelMediumPurple = new System.Windows.Forms.Panel();
-            this.panelRed = new System.Windows.Forms.Panel();
-            this.labelMainColor = new System.Windows.Forms.Label();
             this.labelAdditionColor = new System.Windows.Forms.Label();
+            this.labelMainColor = new System.Windows.Forms.Label();
+            this.panelPaleTurquoise = new System.Windows.Forms.Panel();
+            this.panelGradientActiveCaption = new System.Windows.Forms.Panel();
+            this.panelActiveCaptionText = new System.Windows.Forms.Panel();
+            this.panelControlDark = new System.Windows.Forms.Panel();
+            this.panelMediumPurple = new System.Windows.Forms.Panel();
+            this.panelActiveCaption = new System.Windows.Forms.Panel();
+            this.panelRed = new System.Windows.Forms.Panel();
+            this.panelColor = new System.Windows.Forms.Panel();
             this.addButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.pictureCruiserPanel.SuspendLayout();
@@ -247,73 +247,24 @@ namespace CruiserMove
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Цвет";
             // 
-            // panelColor
+            // labelAdditionColor
             // 
-            this.panelColor.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panelColor.Location = new System.Drawing.Point(29, 85);
-            this.panelColor.Name = "panelColor";
-            this.panelColor.Size = new System.Drawing.Size(60, 60);
-            this.panelColor.TabIndex = 0;
-            this.panelColor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
-            // 
-            // panelActiveCaption
-            // 
-            this.panelActiveCaption.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panelActiveCaption.Location = new System.Drawing.Point(124, 85);
-            this.panelActiveCaption.Name = "panelActiveCaption";
-            this.panelActiveCaption.Size = new System.Drawing.Size(60, 60);
-            this.panelActiveCaption.TabIndex = 1;
-            // 
-            // panelControlDark
-            // 
-            this.panelControlDark.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panelControlDark.Location = new System.Drawing.Point(29, 173);
-            this.panelControlDark.Name = "panelControlDark";
-            this.panelControlDark.Size = new System.Drawing.Size(60, 60);
-            this.panelControlDark.TabIndex = 1;
-            // 
-            // panelGradientActiveCaption
-            // 
-            this.panelGradientActiveCaption.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.panelGradientActiveCaption.Location = new System.Drawing.Point(124, 173);
-            this.panelGradientActiveCaption.Name = "panelGradientActiveCaption";
-            this.panelGradientActiveCaption.Size = new System.Drawing.Size(60, 60);
-            this.panelGradientActiveCaption.TabIndex = 1;
-            // 
-            // panelPaleTurquoise
-            // 
-            this.panelPaleTurquoise.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.panelPaleTurquoise.Location = new System.Drawing.Point(379, 173);
-            this.panelPaleTurquoise.Name = "panelPaleTurquoise";
-            this.panelPaleTurquoise.Size = new System.Drawing.Size(60, 60);
-            this.panelPaleTurquoise.TabIndex = 3;
-            // 
-            // panelActiveCaptionText
-            // 
-            this.panelActiveCaptionText.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panelActiveCaptionText.Location = new System.Drawing.Point(284, 173);
-            this.panelActiveCaptionText.Name = "panelActiveCaptionText";
-            this.panelActiveCaptionText.Size = new System.Drawing.Size(60, 60);
-            this.panelActiveCaptionText.TabIndex = 4;
-            // 
-            // panelMediumPurple
-            // 
-            this.panelMediumPurple.BackColor = System.Drawing.Color.MediumPurple;
-            this.panelMediumPurple.Location = new System.Drawing.Point(379, 85);
-            this.panelMediumPurple.Name = "panelMediumPurple";
-            this.panelMediumPurple.Size = new System.Drawing.Size(60, 60);
-            this.panelMediumPurple.TabIndex = 5;
-            // 
-            // panelRed
-            // 
-            this.panelRed.BackColor = System.Drawing.Color.Red;
-            this.panelRed.Location = new System.Drawing.Point(284, 85);
-            this.panelRed.Name = "panelRed";
-            this.panelRed.Size = new System.Drawing.Size(60, 60);
-            this.panelRed.TabIndex = 2;
+            this.labelAdditionColor.AllowDrop = true;
+            this.labelAdditionColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelAdditionColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelAdditionColor.Location = new System.Drawing.Point(284, 28);
+            this.labelAdditionColor.Name = "labelAdditionColor";
+            this.labelAdditionColor.Size = new System.Drawing.Size(155, 39);
+            this.labelAdditionColor.TabIndex = 11;
+            this.labelAdditionColor.Text = "Дополнительный цвет";
+            this.labelAdditionColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelAdditionColor.UseCompatibleTextRendering = true;
+            this.labelAdditionColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelAdditionColor_DragDrop);
+            this.labelAdditionColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelAdditionColor_DragEnter);
             // 
             // labelMainColor
             // 
+            this.labelMainColor.AllowDrop = true;
             this.labelMainColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelMainColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelMainColor.Location = new System.Drawing.Point(29, 28);
@@ -326,19 +277,70 @@ namespace CruiserMove
             this.labelMainColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelMainColor_DragDrop);
             this.labelMainColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelMainColor_DragEnter);
             // 
-            // labelAdditionColor
+            // panelPaleTurquoise
             // 
-            this.labelAdditionColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelAdditionColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelAdditionColor.Location = new System.Drawing.Point(284, 28);
-            this.labelAdditionColor.Name = "labelAdditionColor";
-            this.labelAdditionColor.Size = new System.Drawing.Size(155, 39);
-            this.labelAdditionColor.TabIndex = 11;
-            this.labelAdditionColor.Text = "Дополнительный цвет";
-            this.labelAdditionColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelAdditionColor.UseCompatibleTextRendering = true;
-            this.labelAdditionColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelAdditionColor_DragDrop);
-            this.labelAdditionColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelAdditionColor_DragEnter);
+            this.panelPaleTurquoise.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.panelPaleTurquoise.Location = new System.Drawing.Point(379, 173);
+            this.panelPaleTurquoise.Name = "panelPaleTurquoise";
+            this.panelPaleTurquoise.Size = new System.Drawing.Size(60, 60);
+            this.panelPaleTurquoise.TabIndex = 3;
+            // 
+            // panelGradientActiveCaption
+            // 
+            this.panelGradientActiveCaption.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panelGradientActiveCaption.Location = new System.Drawing.Point(124, 173);
+            this.panelGradientActiveCaption.Name = "panelGradientActiveCaption";
+            this.panelGradientActiveCaption.Size = new System.Drawing.Size(60, 60);
+            this.panelGradientActiveCaption.TabIndex = 1;
+            // 
+            // panelActiveCaptionText
+            // 
+            this.panelActiveCaptionText.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panelActiveCaptionText.Location = new System.Drawing.Point(284, 173);
+            this.panelActiveCaptionText.Name = "panelActiveCaptionText";
+            this.panelActiveCaptionText.Size = new System.Drawing.Size(60, 60);
+            this.panelActiveCaptionText.TabIndex = 4;
+            // 
+            // panelControlDark
+            // 
+            this.panelControlDark.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panelControlDark.Location = new System.Drawing.Point(29, 173);
+            this.panelControlDark.Name = "panelControlDark";
+            this.panelControlDark.Size = new System.Drawing.Size(60, 60);
+            this.panelControlDark.TabIndex = 1;
+            // 
+            // panelMediumPurple
+            // 
+            this.panelMediumPurple.BackColor = System.Drawing.Color.MediumPurple;
+            this.panelMediumPurple.Location = new System.Drawing.Point(379, 85);
+            this.panelMediumPurple.Name = "panelMediumPurple";
+            this.panelMediumPurple.Size = new System.Drawing.Size(60, 60);
+            this.panelMediumPurple.TabIndex = 5;
+            // 
+            // panelActiveCaption
+            // 
+            this.panelActiveCaption.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panelActiveCaption.Location = new System.Drawing.Point(124, 85);
+            this.panelActiveCaption.Name = "panelActiveCaption";
+            this.panelActiveCaption.Size = new System.Drawing.Size(60, 60);
+            this.panelActiveCaption.TabIndex = 1;
+            // 
+            // panelRed
+            // 
+            this.panelRed.BackColor = System.Drawing.Color.Red;
+            this.panelRed.Location = new System.Drawing.Point(284, 85);
+            this.panelRed.Name = "panelRed";
+            this.panelRed.Size = new System.Drawing.Size(60, 60);
+            this.panelRed.TabIndex = 2;
+            // 
+            // panelColor
+            // 
+            this.panelColor.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panelColor.Location = new System.Drawing.Point(29, 85);
+            this.panelColor.Name = "panelColor";
+            this.panelColor.Size = new System.Drawing.Size(60, 60);
+            this.panelColor.TabIndex = 0;
+            this.panelColor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
             // 
             // addButton
             // 

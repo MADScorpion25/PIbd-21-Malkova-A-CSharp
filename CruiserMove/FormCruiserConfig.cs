@@ -16,6 +16,13 @@ namespace CruiserMove
         public FormCruiserConfig()
         {
             InitializeComponent();
+            panelActiveCaption.MouseDown += panelColor_MouseDown;
+            panelControlDark.MouseDown += panelColor_MouseDown;
+            panelGradientActiveCaption.MouseDown += panelColor_MouseDown;
+            panelRed.MouseDown += panelColor_MouseDown;
+            panelMediumPurple.MouseDown += panelColor_MouseDown;
+            panelActiveCaptionText.MouseDown += panelColor_MouseDown;
+            panelPaleTurquoise.MouseDown += panelColor_MouseDown;
             cancelButton.Click += (object sender, EventArgs e) => { Close(); };
         }
         /// <summary>
@@ -75,27 +82,46 @@ namespace CruiserMove
 
         private void labelMainColor_DragDrop(object sender, DragEventArgs e)
         {
-
+            Color mainColor = (Color)e.Data.GetData(typeof(Color));
+            cruiser.SetMainColor(mainColor);
         }
 
         private void labelMainColor_DragEnter(object sender, DragEventArgs e)
         {
-            
+            if (e.Data.GetDataPresent(typeof(Color)))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+            DrawCruiser();
         }
 
         private void labelAdditionColor_DragDrop(object sender, DragEventArgs e)
         {
-           
+            Color additionColor = (Color) e.Data.GetData(typeof(Color));
+            WarCruiser warCruiser = (WarCruiser)cruiser;
+            warCruiser.SetDopColor(additionColor);
         }
 
         private void labelAdditionColor_DragEnter(object sender, DragEventArgs e)
         {
-
+            if (e.Data.GetDataPresent(typeof(Color)))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+            DrawCruiser();
         }
 
         private void panelColor_MouseDown(object sender, MouseEventArgs e)
         {
-
+            panelColor.DoDragDrop(panelColor.BackColor, DragDropEffects.Move | DragDropEffects.Copy);
         }
     }
 }

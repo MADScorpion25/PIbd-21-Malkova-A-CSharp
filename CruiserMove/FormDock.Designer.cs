@@ -30,8 +30,6 @@ namespace CruiserMove
         private void InitializeComponent()
         {
             this.parkingBox = new System.Windows.Forms.PictureBox();
-            this.setSimpleCruiser = new System.Windows.Forms.Button();
-            this.setWarCruiser = new System.Windows.Forms.Button();
             this.takeCruiser = new System.Windows.Forms.GroupBox();
             this.getCruiser = new System.Windows.Forms.Button();
             this.parkingPlace = new System.Windows.Forms.MaskedTextBox();
@@ -41,6 +39,7 @@ namespace CruiserMove
             this.addParking = new System.Windows.Forms.Button();
             this.listBoxParkings = new System.Windows.Forms.ListBox();
             this.removeParking = new System.Windows.Forms.Button();
+            this.setCruiserButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.parkingBox)).BeginInit();
             this.takeCruiser.SuspendLayout();
             this.SuspendLayout();
@@ -53,26 +52,6 @@ namespace CruiserMove
             this.parkingBox.Size = new System.Drawing.Size(1067, 682);
             this.parkingBox.TabIndex = 0;
             this.parkingBox.TabStop = false;
-            // 
-            // setSimpleCruiser
-            // 
-            this.setSimpleCruiser.Location = new System.Drawing.Point(1088, 318);
-            this.setSimpleCruiser.Name = "setSimpleCruiser";
-            this.setSimpleCruiser.Size = new System.Drawing.Size(158, 68);
-            this.setSimpleCruiser.TabIndex = 1;
-            this.setSimpleCruiser.Text = "Set Simple Cruiser";
-            this.setSimpleCruiser.UseVisualStyleBackColor = true;
-            this.setSimpleCruiser.Click += new System.EventHandler(this.setSimpleCruiser_Click);
-            // 
-            // setWarCruiser
-            // 
-            this.setWarCruiser.Location = new System.Drawing.Point(1088, 402);
-            this.setWarCruiser.Name = "setWarCruiser";
-            this.setWarCruiser.Size = new System.Drawing.Size(158, 68);
-            this.setWarCruiser.TabIndex = 2;
-            this.setWarCruiser.Text = "Set War Cruiser";
-            this.setWarCruiser.UseVisualStyleBackColor = true;
-            this.setWarCruiser.Click += new System.EventHandler(this.setWarCruiser_Click);
             // 
             // takeCruiser
             // 
@@ -160,21 +139,30 @@ namespace CruiserMove
             this.removeParking.UseVisualStyleBackColor = true;
             this.removeParking.Click += new System.EventHandler(this.removeParking_Click);
             // 
-            // FormParking
+            // setCruiserButton
+            // 
+            this.setCruiserButton.Location = new System.Drawing.Point(1088, 398);
+            this.setCruiserButton.Name = "setCruiserButton";
+            this.setCruiserButton.Size = new System.Drawing.Size(158, 68);
+            this.setCruiserButton.TabIndex = 9;
+            this.setCruiserButton.Text = "Set Cruiser";
+            this.setCruiserButton.UseVisualStyleBackColor = true;
+            this.setCruiserButton.Click += new System.EventHandler(this.setCruiserButton_Click);
+            // 
+            // FormDock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1268, 682);
+            this.Controls.Add(this.setCruiserButton);
             this.Controls.Add(this.removeParking);
             this.Controls.Add(this.listBoxParkings);
             this.Controls.Add(this.addParking);
             this.Controls.Add(this.parkingName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.takeCruiser);
-            this.Controls.Add(this.setWarCruiser);
-            this.Controls.Add(this.setSimpleCruiser);
             this.Controls.Add(this.parkingBox);
-            this.Name = "FormParking";
+            this.Name = "FormDock";
             this.Text = "FormParking";
             ((System.ComponentModel.ISupportInitialize)(this.parkingBox)).EndInit();
             this.takeCruiser.ResumeLayout(false);
@@ -187,8 +175,6 @@ namespace CruiserMove
         #endregion
 
         private System.Windows.Forms.PictureBox parkingBox;
-        private System.Windows.Forms.Button setSimpleCruiser;
-        private System.Windows.Forms.Button setWarCruiser;
         private System.Windows.Forms.GroupBox takeCruiser;
         private System.Windows.Forms.Button getCruiser;
         private System.Windows.Forms.MaskedTextBox parkingPlace;
@@ -198,5 +184,6 @@ namespace CruiserMove
         private System.Windows.Forms.Button addParking;
         private System.Windows.Forms.ListBox listBoxParkings;
         private System.Windows.Forms.Button removeParking;
+        private System.Windows.Forms.Button setCruiserButton;
     }
 }

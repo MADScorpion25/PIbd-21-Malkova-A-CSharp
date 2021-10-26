@@ -32,6 +32,5 @@ namespace CruiserMove
         /// </summary>
         /// <param name="color"></param>
         void SetMainColor(Color color);
-
     }
 }

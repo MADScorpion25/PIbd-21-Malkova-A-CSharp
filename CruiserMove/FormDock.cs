@@ -64,59 +64,7 @@ namespace CruiserMove
             }
 
         }
-        /// <summary>
-        /// Обработка нажатия кнопки "Припарковать крейсер"
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void setSimpleCruiser_Click(object sender, EventArgs e)
-        {
-            if (listBoxParkings.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    var cruiser = new CruiserSimp(100, 1000, dialog.Color);
-                    if (parkingCollection[listBoxParkings.SelectedItem.ToString()] + cruiser > -1)
-                    {
-                        Draw();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Парковка переполнена");
-                    }
-                }
-            }
-
-        }
-        /// <summary>
-        /// Обработка нажатия кнопки "Припарковать военный крейсер"
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void setWarCruiser_Click(object sender, EventArgs e)
-        {
-            if (listBoxParkings.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    ColorDialog dialogDop = new ColorDialog();
-                    if (dialogDop.ShowDialog() == DialogResult.OK)
-                    {
-                        var cruiser = new WarCruiser(100, 1000, dialog.Color, dialogDop.Color, true, true, true);
-                        if (parkingCollection[listBoxParkings.SelectedItem.ToString()] + cruiser > -1)
-                        {
-                            Draw();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Парковка переполнена");
-                        }
-                    }
-                }
-            }
-        }
+      
         /// <summary>
         /// Обработка нажатия кнопки "Забрать"
         /// </summary>
@@ -169,6 +117,12 @@ namespace CruiserMove
         private void listBoxParkings_SelectedIndexChanged(object sender, EventArgs e)
         {
             Draw();
+        }
+
+        private void setCruiserButton_Click(object sender, EventArgs e)
+        {
+            FormCruiserConfig CruiserConfig = new FormCruiserConfig();
+            CruiserConfig.ShowDialog();
         }
     }
 }
