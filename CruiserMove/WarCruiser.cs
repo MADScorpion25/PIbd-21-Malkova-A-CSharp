@@ -33,6 +33,24 @@ namespace CruiserMove
             HelicopterStation = helicopterStation;
             Artillery = artillery;
         }
+        /// <summary>
+        /// Конструктор для загрузки с файла
+        /// </summary>
+        /// <param name="info"></param>
+        public WarCruiser(string info) : base(info)
+        {
+            string[] strs = info.Split(separator);
+            if (strs.Length == 7)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+                DopColor = Color.FromName(strs[3]);
+                Locator = Convert.ToBoolean(strs[4]);
+                HelicopterStation = Convert.ToBoolean(strs[5]);
+                Artillery = Convert.ToBoolean(strs[6]);
+            }
+        }
 
         public override void DrawTransport(Graphics g)
         {
@@ -87,6 +105,9 @@ namespace CruiserMove
         {
             DopColor = color;
         }
-
+        public override string ToString()
+        {
+            return $"{base.ToString()}{separator}{DopColor.Name}{separator}{Locator}{separator}{HelicopterStation}{separator}{Artillery}";
+        }
     }
 }

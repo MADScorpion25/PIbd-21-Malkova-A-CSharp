@@ -40,16 +40,23 @@ namespace CruiserMove
             this.listBoxParkings = new System.Windows.Forms.ListBox();
             this.removeParking = new System.Windows.Forms.Button();
             this.setCruiserButton = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.parkingBox)).BeginInit();
             this.takeCruiser.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // parkingBox
             // 
             this.parkingBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.parkingBox.Location = new System.Drawing.Point(0, 0);
+            this.parkingBox.Location = new System.Drawing.Point(0, 28);
             this.parkingBox.Name = "parkingBox";
-            this.parkingBox.Size = new System.Drawing.Size(1067, 682);
+            this.parkingBox.Size = new System.Drawing.Size(1067, 654);
             this.parkingBox.TabIndex = 0;
             this.parkingBox.TabStop = false;
             // 
@@ -149,6 +156,44 @@ namespace CruiserMove
             this.setCruiserButton.UseVisualStyleBackColor = true;
             this.setCruiserButton.Click += new System.EventHandler(this.setCruiserButton_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.файлToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1268, 28);
+            this.menuStrip1.TabIndex = 10;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // файлToolStripMenuItem
+            // 
+            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сохранитьToolStripMenuItem,
+            this.загрузитьToolStripMenuItem});
+            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.файлToolStripMenuItem.Text = "Файл";
+            // 
+            // сохранитьToolStripMenuItem
+            // 
+            this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
+            // 
+            // загрузитьToolStripMenuItem
+            // 
+            this.загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
+            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.загрузитьToolStripMenuItem.Text = "Загрузить";
+            this.загрузитьToolStripMenuItem.Click += new System.EventHandler(this.загрузитьToolStripMenuItem_Click);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            // 
             // FormDock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -162,11 +207,15 @@ namespace CruiserMove
             this.Controls.Add(this.label1);
             this.Controls.Add(this.takeCruiser);
             this.Controls.Add(this.parkingBox);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormDock";
             this.Text = "FormParking";
             ((System.ComponentModel.ISupportInitialize)(this.parkingBox)).EndInit();
             this.takeCruiser.ResumeLayout(false);
             this.takeCruiser.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,5 +234,11 @@ namespace CruiserMove
         private System.Windows.Forms.ListBox listBoxParkings;
         private System.Windows.Forms.Button removeParking;
         private System.Windows.Forms.Button setCruiserButton;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem загрузитьToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }

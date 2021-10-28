@@ -17,6 +17,7 @@ namespace CruiserMove
         /// Высота отрисовки крейсера
         /// </summary>
         protected readonly int cruiserHeight = 60;
+        protected readonly char separator = ';';
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -45,7 +46,21 @@ namespace CruiserMove
             this.cruiserWidth = cruiserWidth;
             this.cruiserHeight = cruiserHeight;
         }
-        
+        /// <summary>
+        /// Конструктор для загрузки с файла
+        /// </summary>
+        /// <param name="info">Информация по объекту</param>
+        public CruiserSimp(string info)
+        {
+            string[] strs = info.Split(separator);
+            if (strs.Length == 3)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+            }
+        }
+
         public override void DrawTransport(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
@@ -115,6 +130,10 @@ namespace CruiserMove
                     }
                     break;
             }
+        }
+        public override string ToString()
+        {
+            return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
         }
     }
 }
