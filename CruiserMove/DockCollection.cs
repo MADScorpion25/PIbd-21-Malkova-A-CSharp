@@ -145,7 +145,7 @@ namespace CruiserMove
                         key = line.Split(separator)[1];
                         parkingStages.Add(key, new Parking<Vehicle>(pictureWidth, pictureHeight));
                     }
-                    else if(line.Split(separator)[0] == "CruiserSimp")
+                    else if(line.Split(separator)[0] == "Cruiser")
                     {
                         cruiser = new CruiserSimp(line.Split(separator)[1]);
                         var result = parkingStages[key] + cruiser;
