@@ -12,7 +12,7 @@ namespace CruiserMove
 {
     public partial class FormDock : Form
     {
-        private readonly DockCollection parkingCollection;
+        private readonly DockCollection dockCollection;
         /// <summary>
         /// Объект от класса-парковки
         /// </summary>
@@ -20,8 +20,7 @@ namespace CruiserMove
         public FormDock()
         {
             InitializeComponent();
-            parkingCollection = new DockCollection(parkingBox.Width,
-           parkingBox.Height);
+            dockCollection = new DockCollection(parkingBox.Width, parkingBox.Height);
         }
         /// <summary>
         /// Заполнение listBoxLevels
@@ -30,9 +29,9 @@ namespace CruiserMove
         {
             int index = listBoxParkings.SelectedIndex;
             listBoxParkings.Items.Clear();
-            for (int i = 0; i < parkingCollection.Keys.Count; i++)
+            for (int i = 0; i < dockCollection.Keys.Count; i++)
             {
-                listBoxParkings.Items.Add(parkingCollection.Keys[i]);
+                listBoxParkings.Items.Add(dockCollection.Keys[i]);
             }
             if (listBoxParkings.Items.Count > 0 && (index == -1 || index >=
            listBoxParkings.Items.Count))
@@ -44,7 +43,7 @@ namespace CruiserMove
             {
                 listBoxParkings.SelectedIndex = index;
             }
-            else if(parkingCollection.Keys.Count == 0)
+            else if(dockCollection.Keys.Count == 0)
             {
                 Draw();
             }
@@ -59,7 +58,7 @@ namespace CruiserMove
                 Bitmap bmp = new Bitmap(parkingBox.Width,
                parkingBox.Height);
                 Graphics gr = Graphics.FromImage(bmp);
-                parkingCollection[listBoxParkings.SelectedItem.ToString()].Draw(gr);
+                dockCollection[listBoxParkings.SelectedItem.ToString()].Draw(gr);
                 parkingBox.Image = bmp;
             }
 
@@ -73,7 +72,7 @@ namespace CruiserMove
         {
             if (listBoxParkings.SelectedIndex > -1 && parkingPlace.Text != "")
             {
-                var cruiser = parkingCollection[listBoxParkings.SelectedItem.ToString()] -
+                var cruiser = dockCollection[listBoxParkings.SelectedItem.ToString()] -
                Convert.ToInt32(parkingPlace.Text);
                 if (cruiser != null)
                 {
@@ -89,20 +88,20 @@ namespace CruiserMove
             parkingBox.Visible = true;
             if (string.IsNullOrEmpty(parkingName.Text))
             {
-                MessageBox.Show("Введите название парковки", "Ошибка",
+                MessageBox.Show("Введите название дока", "Ошибка",
                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            parkingCollection.AddDock(parkingName.Text);
+            dockCollection.AddDock(parkingName.Text);
             ReloadLevels();
         }
         private void removeParking_Click(object sender, EventArgs e)
         {
             if (listBoxParkings.SelectedIndex > -1)
             {
-                if (MessageBox.Show($"Удалить парковку { listBoxParkings.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show($"Удалить док { listBoxParkings.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    parkingCollection.DelDock(listBoxParkings.SelectedItem.ToString());
+                    dockCollection.DelDock(listBoxParkings.SelectedItem.ToString());
                     if (listBoxParkings.Items.Count == 1)
                     {
                         parkingBox.Visible = false;
@@ -126,7 +125,7 @@ namespace CruiserMove
         {
             if (cruiser != null && listBoxParkings.SelectedIndex > -1)
             {
-                if (parkingCollection[listBoxParkings.SelectedItem.ToString()] + cruiser > -1)
+                if (dockCollection[listBoxParkings.SelectedItem.ToString()] + cruiser > -1)
                 {
                     Draw();
                 }
