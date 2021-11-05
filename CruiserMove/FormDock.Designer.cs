@@ -29,34 +29,34 @@ namespace CruiserMove
         /// </summary>
         private void InitializeComponent()
         {
-            this.parkingBox = new System.Windows.Forms.PictureBox();
+            this.dockBox = new System.Windows.Forms.PictureBox();
             this.takeCruiser = new System.Windows.Forms.GroupBox();
             this.getCruiser = new System.Windows.Forms.Button();
-            this.parkingPlace = new System.Windows.Forms.MaskedTextBox();
+            this.dockPlace = new System.Windows.Forms.MaskedTextBox();
             this.place = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.parkingName = new System.Windows.Forms.TextBox();
-            this.addParking = new System.Windows.Forms.Button();
-            this.listBoxParkings = new System.Windows.Forms.ListBox();
-            this.removeParking = new System.Windows.Forms.Button();
+            this.addDock = new System.Windows.Forms.Button();
+            this.listBoxDocks = new System.Windows.Forms.ListBox();
+            this.removeDock = new System.Windows.Forms.Button();
             this.setCruiserButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.parkingBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockBox)).BeginInit();
             this.takeCruiser.SuspendLayout();
             this.SuspendLayout();
             // 
-            // parkingBox
+            // dockBox
             // 
-            this.parkingBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.parkingBox.Location = new System.Drawing.Point(0, 0);
-            this.parkingBox.Name = "parkingBox";
-            this.parkingBox.Size = new System.Drawing.Size(1067, 682);
-            this.parkingBox.TabIndex = 0;
-            this.parkingBox.TabStop = false;
+            this.dockBox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dockBox.Location = new System.Drawing.Point(0, 0);
+            this.dockBox.Name = "dockBox";
+            this.dockBox.Size = new System.Drawing.Size(1067, 682);
+            this.dockBox.TabIndex = 0;
+            this.dockBox.TabStop = false;
             // 
             // takeCruiser
             // 
             this.takeCruiser.Controls.Add(this.getCruiser);
-            this.takeCruiser.Controls.Add(this.parkingPlace);
+            this.takeCruiser.Controls.Add(this.dockPlace);
             this.takeCruiser.Controls.Add(this.place);
             this.takeCruiser.Location = new System.Drawing.Point(1088, 503);
             this.takeCruiser.Name = "takeCruiser";
@@ -75,14 +75,14 @@ namespace CruiserMove
             this.getCruiser.UseVisualStyleBackColor = true;
             this.getCruiser.Click += new System.EventHandler(this.getCruiser_Click);
             // 
-            // parkingPlace
+            // dockPlace
             // 
-            this.parkingPlace.Location = new System.Drawing.Point(81, 46);
-            this.parkingPlace.Mask = "00";
-            this.parkingPlace.Name = "parkingPlace";
-            this.parkingPlace.Size = new System.Drawing.Size(58, 22);
-            this.parkingPlace.TabIndex = 1;
-            this.parkingPlace.ValidatingType = typeof(int);
+            this.dockPlace.Location = new System.Drawing.Point(81, 46);
+            this.dockPlace.Mask = "00";
+            this.dockPlace.Name = "dockPlace";
+            this.dockPlace.Size = new System.Drawing.Size(58, 22);
+            this.dockPlace.TabIndex = 1;
+            this.dockPlace.ValidatingType = typeof(int);
             // 
             // place
             // 
@@ -98,9 +98,9 @@ namespace CruiserMove
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(1140, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 17);
+            this.label1.Size = new System.Drawing.Size(47, 17);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Parkings";
+            this.label1.Text = "Docks";
             // 
             // parkingName
             // 
@@ -109,35 +109,35 @@ namespace CruiserMove
             this.parkingName.Size = new System.Drawing.Size(158, 22);
             this.parkingName.TabIndex = 5;
             // 
-            // addParking
+            // addDock
             // 
-            this.addParking.Location = new System.Drawing.Point(1088, 49);
-            this.addParking.Name = "addParking";
-            this.addParking.Size = new System.Drawing.Size(158, 28);
-            this.addParking.TabIndex = 6;
-            this.addParking.Text = "Add Parking";
-            this.addParking.UseVisualStyleBackColor = true;
-            this.addParking.Click += new System.EventHandler(this.addParking_Click);
+            this.addDock.Location = new System.Drawing.Point(1088, 49);
+            this.addDock.Name = "addDock";
+            this.addDock.Size = new System.Drawing.Size(158, 28);
+            this.addDock.TabIndex = 6;
+            this.addDock.Text = "Add Dock";
+            this.addDock.UseVisualStyleBackColor = true;
+            this.addDock.Click += new System.EventHandler(this.addDock_Click);
             // 
-            // listBoxParkings
+            // listBoxDocks
             // 
-            this.listBoxParkings.FormattingEnabled = true;
-            this.listBoxParkings.ItemHeight = 16;
-            this.listBoxParkings.Location = new System.Drawing.Point(1088, 83);
-            this.listBoxParkings.Name = "listBoxParkings";
-            this.listBoxParkings.Size = new System.Drawing.Size(158, 148);
-            this.listBoxParkings.TabIndex = 7;
-            this.listBoxParkings.SelectedIndexChanged += new System.EventHandler(this.listBoxParkings_SelectedIndexChanged);
+            this.listBoxDocks.FormattingEnabled = true;
+            this.listBoxDocks.ItemHeight = 16;
+            this.listBoxDocks.Location = new System.Drawing.Point(1088, 83);
+            this.listBoxDocks.Name = "listBoxDocks";
+            this.listBoxDocks.Size = new System.Drawing.Size(158, 148);
+            this.listBoxDocks.TabIndex = 7;
+            this.listBoxDocks.SelectedIndexChanged += new System.EventHandler(this.listBoxDocks_SelectedIndexChanged);
             // 
-            // removeParking
+            // removeDock
             // 
-            this.removeParking.Location = new System.Drawing.Point(1088, 237);
-            this.removeParking.Name = "removeParking";
-            this.removeParking.Size = new System.Drawing.Size(158, 28);
-            this.removeParking.TabIndex = 8;
-            this.removeParking.Text = "Remove Parking";
-            this.removeParking.UseVisualStyleBackColor = true;
-            this.removeParking.Click += new System.EventHandler(this.removeParking_Click);
+            this.removeDock.Location = new System.Drawing.Point(1088, 237);
+            this.removeDock.Name = "removeDock";
+            this.removeDock.Size = new System.Drawing.Size(158, 28);
+            this.removeDock.TabIndex = 8;
+            this.removeDock.Text = "Remove Dock";
+            this.removeDock.UseVisualStyleBackColor = true;
+            this.removeDock.Click += new System.EventHandler(this.removeDock_Click);
             // 
             // setCruiserButton
             // 
@@ -155,16 +155,16 @@ namespace CruiserMove
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1268, 682);
             this.Controls.Add(this.setCruiserButton);
-            this.Controls.Add(this.removeParking);
-            this.Controls.Add(this.listBoxParkings);
-            this.Controls.Add(this.addParking);
+            this.Controls.Add(this.removeDock);
+            this.Controls.Add(this.listBoxDocks);
+            this.Controls.Add(this.addDock);
             this.Controls.Add(this.parkingName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.takeCruiser);
-            this.Controls.Add(this.parkingBox);
+            this.Controls.Add(this.dockBox);
             this.Name = "FormDock";
-            this.Text = "FormParking";
-            ((System.ComponentModel.ISupportInitialize)(this.parkingBox)).EndInit();
+            this.Text = "FormDock";
+            ((System.ComponentModel.ISupportInitialize)(this.dockBox)).EndInit();
             this.takeCruiser.ResumeLayout(false);
             this.takeCruiser.PerformLayout();
             this.ResumeLayout(false);
@@ -174,16 +174,16 @@ namespace CruiserMove
 
         #endregion
 
-        private System.Windows.Forms.PictureBox parkingBox;
+        private System.Windows.Forms.PictureBox dockBox;
         private System.Windows.Forms.GroupBox takeCruiser;
         private System.Windows.Forms.Button getCruiser;
-        private System.Windows.Forms.MaskedTextBox parkingPlace;
+        private System.Windows.Forms.MaskedTextBox dockPlace;
         private System.Windows.Forms.Label place;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox parkingName;
-        private System.Windows.Forms.Button addParking;
-        private System.Windows.Forms.ListBox listBoxParkings;
-        private System.Windows.Forms.Button removeParking;
+        private System.Windows.Forms.Button addDock;
+        private System.Windows.Forms.ListBox listBoxDocks;
+        private System.Windows.Forms.Button removeDock;
         private System.Windows.Forms.Button setCruiserButton;
     }
 }
