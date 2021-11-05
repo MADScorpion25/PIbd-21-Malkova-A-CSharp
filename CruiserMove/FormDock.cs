@@ -16,7 +16,7 @@ namespace CruiserMove
         /// <summary>
         /// Объект от класса-парковки
         /// </summary>
-        private readonly Parking<CruiserSimp> parking;
+        private readonly Dock<CruiserSimp> parking;
         public FormDock()
         {
             InitializeComponent();
@@ -93,7 +93,7 @@ namespace CruiserMove
                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            parkingCollection.AddParking(parkingName.Text);
+            parkingCollection.AddDock(parkingName.Text);
             ReloadLevels();
         }
         private void removeParking_Click(object sender, EventArgs e)
@@ -102,7 +102,7 @@ namespace CruiserMove
             {
                 if (MessageBox.Show($"Удалить парковку { listBoxParkings.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    parkingCollection.DelParking(listBoxParkings.SelectedItem.ToString());
+                    parkingCollection.DelDock(listBoxParkings.SelectedItem.ToString());
                     if (listBoxParkings.Items.Count == 1)
                     {
                         parkingBox.Visible = false;

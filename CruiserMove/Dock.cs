@@ -11,7 +11,7 @@ namespace CruiserMove
     /// Параметризованный класс для хранения набора объектов от интерфейса ITransport
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public partial class Parking<T> where T : class, ITransport
+    public partial class Dock<T> where T : class, ITransport
     {
         /// <summary>
         /// Список объектов, которые храним
@@ -43,7 +43,7 @@ namespace CruiserMove
         private readonly int _parkPlacesWidth = 3;
         /// <param name="picWidth">Рамзер парковки - ширина</param>
         /// <param name="picHeight">Рамзер парковки - высота</param>
-        public Parking(int picWidth, int picHeight)
+        public Dock(int picWidth, int picHeight)
         {
             int width = picWidth / _placeSizeWidth;
             int height = picHeight / _placeSizeHeight;
@@ -59,7 +59,7 @@ namespace CruiserMove
         /// <param name="p">Парковка</param>
         /// <param name="cruiser">Добавляемый крейсер</param>
         /// <returns></returns>
-        public static int operator +(Parking<T> p, T cruiser)
+        public static int operator +(Dock<T> p, T cruiser)
         {
             if (p._maxCount <= p._places.Count) return -1;
             for(int i = 0; i < p._places.Count + 1; i++)
@@ -76,7 +76,7 @@ namespace CruiserMove
         /// <param name="p">Парковка</param>
         /// <param name="index">Индекс места, с которого пытаемся извлечь объект</param>
         /// <returns></returns>
-        public static T operator -(Parking<T> p, int index)
+        public static T operator -(Dock<T> p, int index)
         {
             T removedCruiser;
 
