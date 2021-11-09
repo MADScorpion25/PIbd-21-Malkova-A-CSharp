@@ -13,6 +13,7 @@ namespace CruiserMove
     public partial class FormDock : Form
     {
         private readonly DockCollection parkingCollection;
+
         /// <summary>
         /// Объект от класса-парковки
         /// </summary>

@@ -193,6 +193,11 @@ namespace CruiserMove
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog1";
+            this.openFileDialog.Filter = "text Files|*txt";
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.Filter = "text Files|*txt";
             // 
             // FormDock
             // 

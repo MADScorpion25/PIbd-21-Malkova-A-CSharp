@@ -89,17 +89,17 @@ namespace CruiserMove
             }
             using (StreamWriter fs = new StreamWriter(filename))
             {
-                fs.WriteLine($"DockCollection{Environment.NewLine}", fs);
+                fs.Write($"DockCollection{Environment.NewLine}", fs);
                 foreach (var level in parkingStages)
                 {
-                    fs.WriteLine($"Dock{separator}{level.Key}{Environment.NewLine}", fs);
+                    fs.Write($"Dock{separator}{level.Key}{Environment.NewLine}", fs);
                     ITransport cruiser = null;
                     for (int i = 0; (cruiser = level.Value.GetNext(i)) != null; i++)
                     {
                         if (cruiser != null)
                         {
                             //если место не пустое
-                            //Записываем тип машины
+                            //Записываем тип крейсера
                             if (cruiser.GetType().Name == "CruiserSimp")
                             {
                                 fs.Write($"Cruiser{separator}", fs);
@@ -109,7 +109,7 @@ namespace CruiserMove
                                 fs.Write($"WarCruiser{separator}", fs);
                             }
                             //Записываемые параметры
-                            fs.WriteLine(cruiser + Environment.NewLine, fs);
+                            fs.Write(cruiser + Environment.NewLine, fs);
                         }
                     }
                 }
@@ -127,6 +127,7 @@ namespace CruiserMove
             {
                 return false;
             }
+            parkingStages.Clear();
          
             using (StreamReader sr = new StreamReader(filename, Encoding.UTF8))
             {
