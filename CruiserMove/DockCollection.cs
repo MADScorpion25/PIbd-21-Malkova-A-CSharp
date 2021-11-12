@@ -12,11 +12,11 @@ namespace CruiserMove
         /// <summary>
         /// Словарь (хранилище) с парковками
         /// </summary>
-        readonly Dictionary<string, Parking<Vehicle>> parkingStages;
+        readonly Dictionary<string, Dock<Vehicle>> dockStages;
         /// <summary>
         /// Возвращение списка названий праковок
         /// </summary>
-        public List<string> Keys => parkingStages.Keys.ToList();
+        public List<string> Keys => dockStages.Keys.ToList();
         /// <summary>
         /// Ширина окна отрисовки
         /// </summary>
@@ -37,7 +37,7 @@ namespace CruiserMove
         /// <param name="pictureHeight"></param>
         public DockCollection(int pictureWidth, int pictureHeight)
         {
-            parkingStages = new Dictionary<string, Parking<Vehicle>>();
+            dockStages = new Dictionary<string, Dock<Vehicle>>();
             this.pictureWidth = pictureWidth;
             this.pictureHeight = pictureHeight;
         }
@@ -45,22 +45,22 @@ namespace CruiserMove
         /// Добавление парковки
         /// </summary>
         /// <param name="name">Название парковки</param>
-        public void AddParking(string name)
+        public void AddDock(string name)
         {
-            if (!parkingStages.ContainsKey(name))
+            if (!dockStages.ContainsKey(name))
             {
-                parkingStages.Add(name, new Parking<Vehicle>(pictureWidth, pictureHeight));
+                dockStages.Add(name, new Dock<Vehicle>(pictureWidth, pictureHeight));
             }
         }
         /// <summary>
         /// Удаление парковки
         /// </summary>
         /// <param name="name">Название парковки</param>
-        public void DelParking(string name)
+        public void DelDock(string name)
         {
-            if (parkingStages.ContainsKey(name))
+            if (dockStages.ContainsKey(name))
             {
-                parkingStages.Remove(name);
+                dockStages.Remove(name);
             }
         }
         /// <summary>
@@ -68,19 +68,15 @@ namespace CruiserMove
         /// </summary>
         /// <param name="ind"></param>
         /// <returns></returns>
-        public Parking<Vehicle> this[string ind]
+        public Dock<Vehicle> this[string ind]
         {
             get
             {
-                if (parkingStages.ContainsKey(ind)) return parkingStages[ind];
+                if (dockStages.ContainsKey(ind)) return dockStages[ind];
                 else return null;
             }
         }
-        /// <summary>
-        /// Сохранение информации по автомобилям на парковках в файл
-        /// </summary>
-        /// <param name="filename">Путь и имя файла</param>
-        /// <returns></returns>
+
         public bool SaveData(string filename)
         {
             if (File.Exists(filename))
@@ -90,7 +86,7 @@ namespace CruiserMove
             using (StreamWriter fs = new StreamWriter(filename))
             {
                 fs.Write($"DockCollection{Environment.NewLine}", fs);
-                foreach (var level in parkingStages)
+                foreach (var level in dockStages)
                 {
                     fs.Write($"Dock{separator}{level.Key}{Environment.NewLine}", fs);
                     ITransport cruiser = null;
@@ -98,8 +94,7 @@ namespace CruiserMove
                     {
                         if (cruiser != null)
                         {
-                            //если место не пустое
-                            //Записываем тип крейсера
+
                             if (cruiser.GetType().Name == "CruiserSimp")
                             {
                                 fs.Write($"Cruiser{separator}", fs);
@@ -108,7 +103,6 @@ namespace CruiserMove
                             {
                                 fs.Write($"WarCruiser{separator}", fs);
                             }
-                            //Записываемые параметры
                             fs.Write(cruiser + Environment.NewLine, fs);
                         }
                     }
@@ -116,19 +110,15 @@ namespace CruiserMove
                 return true;
             }
         }
-        /// <summary>
-        /// Загрузка нформации по автомобилям на парковках из файла
-        /// </summary>
-        /// <param name="filename"></param>
-        /// <returns></returns>
+
         public bool LoadData(string filename)
         {
             if (!File.Exists(filename))
             {
                 return false;
             }
-            parkingStages.Clear();
-         
+            dockStages.Clear();
+
             using (StreamReader sr = new StreamReader(filename, Encoding.UTF8))
             {
                 String line;
@@ -144,12 +134,12 @@ namespace CruiserMove
                     if (line.Contains("Dock"))
                     {
                         key = line.Split(separator)[1];
-                        parkingStages.Add(key, new Parking<Vehicle>(pictureWidth, pictureHeight));
+                        dockStages.Add(key, new Dock<Vehicle>(pictureWidth, pictureHeight));
                     }
-                    else if(line.Split(separator)[0] == "Cruiser")
+                    else if (line.Split(separator)[0] == "Cruiser")
                     {
                         cruiser = new CruiserSimp(line.Split(separator)[1]);
-                        var result = parkingStages[key] + cruiser;
+                        var result = dockStages[key] + cruiser;
                         if (result < 0)
                         {
                             return false;
@@ -158,7 +148,7 @@ namespace CruiserMove
                     else if (line.Split(separator)[0] == "WarCruiser")
                     {
                         cruiser = new WarCruiser(line.Split(separator)[1]);
-                        var result = parkingStages[key] + cruiser;
+                        var result = dockStages[key] + cruiser;
                         if (result < 0)
                         {
                             return false;

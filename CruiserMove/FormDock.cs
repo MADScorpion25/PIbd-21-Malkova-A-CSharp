@@ -12,40 +12,40 @@ namespace CruiserMove
 {
     public partial class FormDock : Form
     {
-        private readonly DockCollection parkingCollection;
+        private readonly DockCollection dockCollection;
 
         /// <summary>
         /// Объект от класса-парковки
         /// </summary>
-        private readonly Parking<CruiserSimp> parking;
+        private readonly Dock<CruiserSimp> dock;
         public FormDock()
         {
             InitializeComponent();
-            parkingCollection = new DockCollection(parkingBox.Width,
-           parkingBox.Height);
+            dockCollection = new DockCollection(dockBox.Width,
+           dockBox.Height);
         }
         /// <summary>
         /// Заполнение listBoxLevels
         /// </summary>
         private void ReloadLevels()
         {
-            int index = listBoxParkings.SelectedIndex;
-            listBoxParkings.Items.Clear();
-            for (int i = 0; i < parkingCollection.Keys.Count; i++)
+            int index = listBoxDocks.SelectedIndex;
+            listBoxDocks.Items.Clear();
+            for (int i = 0; i < dockCollection.Keys.Count; i++)
             {
-                listBoxParkings.Items.Add(parkingCollection.Keys[i]);
+                listBoxDocks.Items.Add( dockCollection.Keys[i]);
             }
-            if (listBoxParkings.Items.Count > 0 && (index == -1 || index >=
-           listBoxParkings.Items.Count))
+            if (listBoxDocks.Items.Count > 0 && (index == -1 || index >=
+           listBoxDocks.Items.Count))
             {
-                listBoxParkings.SelectedIndex = 0;
+                listBoxDocks.SelectedIndex = 0;
             }
-            else if (listBoxParkings.Items.Count > 0 && index > -1 && index <
-           listBoxParkings.Items.Count)
+            else if (listBoxDocks.Items.Count > 0 && index > -1 && index <
+           listBoxDocks.Items.Count)
             {
-                listBoxParkings.SelectedIndex = index;
+                listBoxDocks.SelectedIndex = index;
             }
-            else if(parkingCollection.Keys.Count == 0)
+            else if( dockCollection.Keys.Count == 0)
             {
                 Draw();
             }
@@ -55,13 +55,13 @@ namespace CruiserMove
         /// </summary>
         private void Draw()
         {
-            if (listBoxParkings.SelectedIndex > -1)
+            if (listBoxDocks.SelectedIndex > -1)
             {//если выбран один из пуктов в listBox (при старте программы ни один пункт не будет выбран и может возникнуть ошибка, если мы попытаемся обратиться к элементуlistBox)
-                Bitmap bmp = new Bitmap(parkingBox.Width,
-               parkingBox.Height);
+                Bitmap bmp = new Bitmap(dockBox.Width,
+               dockBox.Height);
                 Graphics gr = Graphics.FromImage(bmp);
-                parkingCollection[listBoxParkings.SelectedItem.ToString()].Draw(gr);
-                parkingBox.Image = bmp;
+                dockCollection[listBoxDocks.SelectedItem.ToString()].Draw(gr);
+                dockBox.Image = bmp;
             }
 
         }
@@ -72,10 +72,10 @@ namespace CruiserMove
         /// <param name="e"></param>
         private void getCruiser_Click(object sender, EventArgs e)
         {
-            if (listBoxParkings.SelectedIndex > -1 && parkingPlace.Text != "")
+            if (listBoxDocks.SelectedIndex > -1 && dockPlace.Text != "")
             {
-                var cruiser = parkingCollection[listBoxParkings.SelectedItem.ToString()] -
-               Convert.ToInt32(parkingPlace.Text);
+                var cruiser = dockCollection[listBoxDocks.SelectedItem.ToString()] -
+               Convert.ToInt32(dockPlace.Text);
                 if (cruiser != null)
                 {
                     FormCruiser form = new FormCruiser();
@@ -85,35 +85,35 @@ namespace CruiserMove
                 Draw();
             }
         }
-        private void addParking_Click(object sender, EventArgs e)
+        private void addDock_Click(object sender, EventArgs e)
         {
-            parkingBox.Visible = true;
-            if (string.IsNullOrEmpty(parkingName.Text))
+            dockBox.Visible = true;
+            if (string.IsNullOrEmpty(dockName.Text))
             {
-                MessageBox.Show("Введите название парковки", "Ошибка",
+                MessageBox.Show("Введите название дока", "Ошибка",
                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            parkingCollection.AddParking(parkingName.Text);
+            dockCollection.AddDock(dockName.Text);
             ReloadLevels();
         }
-        private void removeParking_Click(object sender, EventArgs e)
+        private void removeDock_Click(object sender, EventArgs e)
         {
-            if (listBoxParkings.SelectedIndex > -1)
+            if (listBoxDocks.SelectedIndex > -1)
             {
-                if (MessageBox.Show($"Удалить парковку { listBoxParkings.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show($"Удалить док { listBoxDocks.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    parkingCollection.DelParking(listBoxParkings.SelectedItem.ToString());
-                    if (listBoxParkings.Items.Count == 1)
+                    dockCollection.DelDock(listBoxDocks.SelectedItem.ToString());
+                    if (listBoxDocks.Items.Count == 1)
                     {
-                        parkingBox.Visible = false;
+                        dockBox.Visible = false;
                     }
                     ReloadLevels();
                 }
-                
+
             }
         }
-        private void listBoxParkings_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxDocks_SelectedIndexChanged(object sender, EventArgs e)
         {
             Draw();
         }
@@ -125,9 +125,9 @@ namespace CruiserMove
         }
         private void AddCruiser(Vehicle cruiser)
         {
-            if (cruiser != null && listBoxParkings.SelectedIndex > -1)
+            if (cruiser != null && listBoxDocks.SelectedIndex > -1)
             {
-                if (parkingCollection[listBoxParkings.SelectedItem.ToString()] + cruiser > -1)
+                if ( dockCollection[listBoxDocks.SelectedItem.ToString()] + cruiser > -1)
                 {
                     Draw();
                 }
@@ -142,7 +142,7 @@ namespace CruiserMove
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (parkingCollection.SaveData(saveFileDialog.FileName))
+                if (dockCollection.SaveData(saveFileDialog.FileName))
                 {
                     MessageBox.Show("Сохранение прошло успешно", "Результат",
                    MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -159,7 +159,7 @@ namespace CruiserMove
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (parkingCollection.LoadData(openFileDialog.FileName))
+                if (dockCollection.LoadData(openFileDialog.FileName))
                 {
                     MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,
                    MessageBoxIcon.Information);
