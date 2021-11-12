@@ -17,7 +17,7 @@ namespace CruiserMove
         /// <summary>
         /// Объект от класса-парковки
         /// </summary>
-        private readonly Dock<CruiserSimp> dock;
+        private readonly Dock<CruiserSimp> parking;
         public FormDock()
         {
             InitializeComponent();
@@ -50,9 +50,6 @@ namespace CruiserMove
                 Draw();
             }
         }
-        /// <summary>
-        /// Метод отрисовки парковки
-        /// </summary>
         private void Draw()
         {
             if (listBoxDocks.SelectedIndex > -1)
