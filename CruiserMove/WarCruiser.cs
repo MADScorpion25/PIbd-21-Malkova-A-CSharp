@@ -79,6 +79,14 @@ namespace CruiserMove
                 g.DrawEllipse(parking, startPosX + 10, startPosY + 15, 30, 30);
             }
         }
-        
+        /// <summary>
+        /// Смена дополнительного цвета
+        /// </summary>
+        /// <param name="color"></param>
+        public void SetDopColor(Color color)
+        {
+            DopColor = color;
+        }
+
     }
 }

@@ -11,11 +11,11 @@ namespace CruiserMove
         /// <summary>
         /// Словарь (хранилище) с парковками
         /// </summary>
-        readonly Dictionary<string, Parking<Vehicle>> parkingStages;
+        readonly Dictionary<string, Dock<Vehicle>> dockStages;
         /// <summary>
         /// Возвращение списка названий праковок
         /// </summary>
-        public List<string> Keys => parkingStages.Keys.ToList();
+        public List<string> Keys => dockStages.Keys.ToList();
         /// <summary>
         /// Ширина окна отрисовки
         /// </summary>
@@ -32,7 +32,7 @@ namespace CruiserMove
         /// <param name="pictureHeight"></param>
         public DockCollection(int pictureWidth, int pictureHeight)
         {
-            parkingStages = new Dictionary<string, Parking<Vehicle>>();
+            dockStages = new Dictionary<string, Dock<Vehicle>>();
             this.pictureWidth = pictureWidth;
             this.pictureHeight = pictureHeight;
         }
@@ -40,22 +40,22 @@ namespace CruiserMove
         /// Добавление парковки
         /// </summary>
         /// <param name="name">Название парковки</param>
-        public void AddParking(string name)
+        public void AddDock(string name)
         {
-            if (!parkingStages.ContainsKey(name))
+            if (!dockStages.ContainsKey(name))
             {
-                parkingStages.Add(name, new Parking<Vehicle>(pictureWidth, pictureHeight));
+                dockStages.Add(name, new Dock<Vehicle>(pictureWidth, pictureHeight));
             }
         }
         /// <summary>
         /// Удаление парковки
         /// </summary>
         /// <param name="name">Название парковки</param>
-        public void DelParking(string name)
+        public void DelDock(string name)
         {
-            if (parkingStages.ContainsKey(name))
+            if (dockStages.ContainsKey(name))
             {
-                parkingStages.Remove(name);
+                dockStages.Remove(name);
             }
         }
         /// <summary>
@@ -63,11 +63,11 @@ namespace CruiserMove
         /// </summary>
         /// <param name="ind"></param>
         /// <returns></returns>
-        public Parking<Vehicle> this[string ind]
+        public Dock<Vehicle> this[string ind]
         {
             get
             {
-                if (parkingStages.ContainsKey(ind)) return parkingStages[ind];
+                if (dockStages.ContainsKey(ind)) return dockStages[ind];
                 else return null;
             } 
         }

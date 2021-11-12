@@ -54,6 +54,12 @@
     <Compile Include="FormCruiser.Designer.cs">
       <DependentUpon>FormCruiser.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCruiserConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCruiserConfig.Designer.cs">
+      <DependentUpon>FormCruiserConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,9 @@
     <Compile Include="WarCruiser.cs" />
     <EmbeddedResource Include="FormCruiser.resx">
       <DependentUpon>FormCruiser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCruiserConfig.resx">
+      <DependentUpon>FormCruiserConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDock.resx">
       <DependentUpon>FormDock.cs</DependentUpon>
