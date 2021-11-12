@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,14 +13,16 @@ namespace CruiserMove
     public partial class FormDock : Form
     {
         private readonly DockCollection dockCollection;
+
         /// <summary>
         /// Объект от класса-парковки
         /// </summary>
-        private readonly Dock<CruiserSimp> dock;
+        private readonly Dock<CruiserSimp> parking;
         public FormDock()
         {
             InitializeComponent();
-            dockCollection = new DockCollection(dockBox.Width, dockBox.Height);
+            dockCollection = new DockCollection(dockBox.Width,
+           dockBox.Height);
         }
         /// <summary>
         /// Заполнение listBoxLevels
@@ -31,7 +33,7 @@ namespace CruiserMove
             listBoxDocks.Items.Clear();
             for (int i = 0; i < dockCollection.Keys.Count; i++)
             {
-                listBoxDocks.Items.Add(dockCollection.Keys[i]);
+                listBoxDocks.Items.Add( dockCollection.Keys[i]);
             }
             if (listBoxDocks.Items.Count > 0 && (index == -1 || index >=
            listBoxDocks.Items.Count))
@@ -43,14 +45,11 @@ namespace CruiserMove
             {
                 listBoxDocks.SelectedIndex = index;
             }
-            else if(dockCollection.Keys.Count == 0)
+            else if( dockCollection.Keys.Count == 0)
             {
                 Draw();
             }
         }
-        /// <summary>
-        /// Метод отрисовки парковки
-        /// </summary>
         private void Draw()
         {
             if (listBoxDocks.SelectedIndex > -1)
@@ -86,13 +85,13 @@ namespace CruiserMove
         private void addDock_Click(object sender, EventArgs e)
         {
             dockBox.Visible = true;
-            if (string.IsNullOrEmpty(parkingName.Text))
+            if (string.IsNullOrEmpty(dockName.Text))
             {
                 MessageBox.Show("Введите название дока", "Ошибка",
                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            dockCollection.AddDock(parkingName.Text);
+            dockCollection.AddDock(dockName.Text);
             ReloadLevels();
         }
         private void removeDock_Click(object sender, EventArgs e)
@@ -108,7 +107,7 @@ namespace CruiserMove
                     }
                     ReloadLevels();
                 }
-                
+
             }
         }
         private void listBoxDocks_SelectedIndexChanged(object sender, EventArgs e)
@@ -125,13 +124,49 @@ namespace CruiserMove
         {
             if (cruiser != null && listBoxDocks.SelectedIndex > -1)
             {
-                if (dockCollection[listBoxDocks.SelectedItem.ToString()] + cruiser > -1)
+                if ( dockCollection[listBoxDocks.SelectedItem.ToString()] + cruiser > -1)
                 {
                     Draw();
                 }
                 else
                 {
                     MessageBox.Show("Крейсер не удалось поставить");
+                }
+            }
+        }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (dockCollection.SaveData(saveFileDialog.FileName))
+                {
+                    MessageBox.Show("Сохранение прошло успешно", "Результат",
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Не сохранилось", "Результат",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (dockCollection.LoadData(openFileDialog.FileName))
+                {
+                    MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,
+                   MessageBoxIcon.Information);
+                    ReloadLevels();
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Не загрузили", "Результат", MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
                 }
             }
         }

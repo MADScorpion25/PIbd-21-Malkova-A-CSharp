@@ -102,10 +102,7 @@ namespace CruiserMove
                 _places[i]?.DrawTransport(g);
             }
         }
-        /// <summary>
-        /// Метод отрисовки разметки парковочных мест
-        /// </summary>
-        /// <param name="g"></param>
+    
         private void DrawMarking(Graphics g)
         {
             Pen pen = new Pen(Color.Black, 3);
@@ -120,5 +117,15 @@ namespace CruiserMove
                (pictureHeight / _placeSizeHeight) * _placeSizeHeight);
             }
         }
+      
+        public T GetNext(int index)
+        {
+            if (index < 0 || index >= _places.Count)
+            {
+                return null;
+            }
+            return _places[index];
+        }
+
     }
 }
