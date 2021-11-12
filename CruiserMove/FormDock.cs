@@ -16,7 +16,7 @@ namespace CruiserMove
         /// <summary>
         /// Объект от класса-парковки
         /// </summary>
-        private readonly Dock<CruiserSimp> parking;
+        private readonly Dock<CruiserSimp> dock;
         public FormDock()
         {
             InitializeComponent();
