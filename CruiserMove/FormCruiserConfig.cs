@@ -111,11 +111,6 @@ namespace CruiserMove
             Panel panel = (Panel)sender;
             panel.DoDragDrop(panel.BackColor, DragDropEffects.Move |DragDropEffects.Copy);
         }
-        internal void AddEventB(Action<FormCruiserConfig> ev)
-        {
-            eventAddCruiser?.Invoke((Vehicle)cruiser);
-            Close();
-        }
         internal void AddEvent(Action<Vehicle> ev)
         {
             if (eventAddCruiser == null)

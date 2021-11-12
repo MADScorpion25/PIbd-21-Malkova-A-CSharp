@@ -1,4 +1,4 @@
-﻿
+
 namespace CruiserMove
 {
     partial class FormDock
