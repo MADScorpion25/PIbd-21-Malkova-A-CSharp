@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NLog;
 
 namespace CruiserMove
 {
@@ -29,6 +30,7 @@ namespace CruiserMove
         /// Разделитель для записи информации в файл
         /// </summary>
         private readonly char separator = ':';
+        private readonly Logger logger;
 
         /// <summary>
         /// Конструктор
@@ -40,6 +42,7 @@ namespace CruiserMove
             dockStages = new Dictionary<string, Dock<Vehicle>>();
             this.pictureWidth = pictureWidth;
             this.pictureHeight = pictureHeight;
+            logger = LogManager.GetCurrentClassLogger();
         }
         /// <summary>
         /// Добавление парковки
@@ -77,11 +80,15 @@ namespace CruiserMove
             }
         }
 
-        public bool SaveData(string filename)
+        public void SaveData(string filename)
         {
             if (File.Exists(filename))
             {
                 File.Delete(filename);
+            }
+            else
+            {
+                throw new FileNotFoundException();
             }
             using (StreamWriter fs = new StreamWriter(filename))
             {
@@ -94,7 +101,6 @@ namespace CruiserMove
                     {
                         if (cruiser != null)
                         {
-
                             if (cruiser.GetType().Name == "CruiserSimp")
                             {
                                 fs.Write($"Cruiser{separator}", fs);
@@ -107,18 +113,15 @@ namespace CruiserMove
                         }
                     }
                 }
-                return true;
             }
         }
 
-        public bool LoadData(string filename)
+        public void LoadData(string filename)
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
-            dockStages.Clear();
-
             using (StreamReader sr = new StreamReader(filename, Encoding.UTF8))
             {
                 String line;
@@ -127,31 +130,39 @@ namespace CruiserMove
                 line = sr.ReadLine();
                 if (!line.Contains("DockCollection"))
                 {
-                    return false;
+                    throw new Exception("Неверный формат файла");
                 }
                 while ((line = sr.ReadLine()) != null)
                 {
                     if (line.Contains("Dock"))
                     {
-                        key = line.Split(separator)[1];
-                        dockStages.Add(key, new Dock<Vehicle>(pictureWidth, pictureHeight));
+                        try
+                        {
+                            key = line.Split(separator)[1];
+                            dockStages.Add(key, new Dock<Vehicle>(pictureWidth, pictureHeight));
+                        }
+                        catch(ArgumentException ex)
+                        {
+                            logger.Warn($"док с именем {key} уже существует");
+                            throw new DockOccupiedPlaceException();
+                        }
                     }
                     else if (line.Split(separator)[0] == "Cruiser")
                     {
                         cruiser = new CruiserSimp(line.Split(separator)[1]);
-                        var result = dockStages[key] + cruiser;
-                        if (result < 0)
+                        if (!(dockStages[key] + cruiser))
                         {
-                            return false;
+                            logger.Warn($"Невозможно добавить крейсер: {cruiser}");
+                            throw new DockOccupiedPlaceException();
                         }
                     }
                     else if (line.Split(separator)[0] == "WarCruiser")
                     {
                         cruiser = new WarCruiser(line.Split(separator)[1]);
-                        var result = dockStages[key] + cruiser;
-                        if (result < 0)
+                        if (!(dockStages[key] + cruiser))
                         {
-                            return false;
+                            logger.Warn($"Невозможно добавить военный крейсер: {cruiser}");
+                            throw new DockOccupiedPlaceException();
                         }
                     }
                     else
@@ -160,7 +171,6 @@ namespace CruiserMove
                     }
                 }
             }
-            return true;
         }
     }
 }
