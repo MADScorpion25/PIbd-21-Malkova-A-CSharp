@@ -8,6 +8,6 @@ namespace CruiserMove
 {
     class DockOccupiedPlaceException : Exception
     {
-        public DockOccupiedPlaceException() : base("Док не пустой, невозможно загрузить файл") { }
+        public DockOccupiedPlaceException(String key) : base($"Док с именем {key} уже существует") { }
     }
 }

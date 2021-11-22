@@ -151,17 +151,14 @@ namespace CruiserMove
                     }
                     else
                     {
-                        MessageBox.Show("Крейсер не удалось поставить");
+                        logger.Warn($"Крейсер не удалось поставить: {cruiser}");
+                        throw new DockOverflowException();
                     }
                 }
                 catch(DockOverflowException ex)
                 {
                     logger.Warn($"Док переполнен, невозможно добавить крейсер {cruiser}");
                     MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

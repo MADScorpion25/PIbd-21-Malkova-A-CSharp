@@ -136,15 +136,15 @@ namespace CruiserMove
                 {
                     if (line.Contains("Dock"))
                     {
-                        try
+                        key = line.Split(separator)[1];
+                        if (!dockStages.ContainsKey(key))
                         {
-                            key = line.Split(separator)[1];
                             dockStages.Add(key, new Dock<Vehicle>(pictureWidth, pictureHeight));
                         }
-                        catch(ArgumentException ex)
+                        else
                         {
                             logger.Warn($"док с именем {key} уже существует");
-                            throw new DockOccupiedPlaceException();
+                            throw new DockOccupiedPlaceException(key);
                         }
                     }
                     else if (line.Split(separator)[0] == "Cruiser")
@@ -153,7 +153,7 @@ namespace CruiserMove
                         if (!(dockStages[key] + cruiser))
                         {
                             logger.Warn($"Невозможно добавить крейсер: {cruiser}");
-                            throw new DockOccupiedPlaceException();
+                            throw new DockOccupiedPlaceException(key);
                         }
                     }
                     else if (line.Split(separator)[0] == "WarCruiser")
@@ -162,7 +162,7 @@ namespace CruiserMove
                         if (!(dockStages[key] + cruiser))
                         {
                             logger.Warn($"Невозможно добавить военный крейсер: {cruiser}");
-                            throw new DockOccupiedPlaceException();
+                            throw new DockOccupiedPlaceException(key);
                         }
                     }
                     else
