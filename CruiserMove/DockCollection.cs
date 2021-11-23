@@ -130,7 +130,7 @@ namespace CruiserMove
                 line = sr.ReadLine();
                 if (!line.Contains("DockCollection"))
                 {
-                    throw new Exception("Неверный формат файла");
+                    throw new FileNotFoundException("Неверный формат файла");
                 }
                 while ((line = sr.ReadLine()) != null)
                 {
@@ -141,11 +141,6 @@ namespace CruiserMove
                         {
                             dockStages.Add(key, new Dock<Vehicle>(pictureWidth, pictureHeight));
                         }
-                        else
-                        {
-                            logger.Warn($"док с именем {key} уже существует");
-                            throw new DockOccupiedPlaceException(key);
-                        }
                     }
                     else if (line.Split(separator)[0] == "Cruiser")
                     {
@@ -153,7 +148,7 @@ namespace CruiserMove
                         if (!(dockStages[key] + cruiser))
                         {
                             logger.Warn($"Невозможно добавить крейсер: {cruiser}");
-                            throw new DockOccupiedPlaceException(key);
+                            throw new DockOverflowException();
                         }
                     }
                     else if (line.Split(separator)[0] == "WarCruiser")
@@ -162,7 +157,7 @@ namespace CruiserMove
                         if (!(dockStages[key] + cruiser))
                         {
                             logger.Warn($"Невозможно добавить военный крейсер: {cruiser}");
-                            throw new DockOccupiedPlaceException(key);
+                            throw new DockOverflowException();
                         }
                     }
                     else

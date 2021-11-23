@@ -57,7 +57,6 @@
     <Compile Include="CruiserSimp.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="DockNotFoundException.cs" />
-    <Compile Include="DockOccupiedPlaceException.cs" />
     <Compile Include="DockOverflowException.cs" />
     <Compile Include="FormCruiser.cs">
       <SubType>Form</SubType>

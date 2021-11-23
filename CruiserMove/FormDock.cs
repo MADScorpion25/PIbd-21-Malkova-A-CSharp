@@ -16,7 +16,6 @@ namespace CruiserMove
     {
         private readonly DockCollection dockCollection;
         private readonly Logger logger;
-
         /// <summary>
         /// Объект от класса-парковки
         /// </summary>
@@ -155,7 +154,6 @@ namespace CruiserMove
                 }
             }
         }
-
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -173,7 +171,6 @@ namespace CruiserMove
                 }
             }
         }
-
         private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -184,11 +181,6 @@ namespace CruiserMove
                     MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ReloadLevels();
                     Draw();
-                }
-                catch(DockOccupiedPlaceException ex)
-                {
-                    logger.Warn("Док занят, невозможно добавить крейсер");
-                    MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (DockOverflowException ex)
                 {
