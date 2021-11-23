@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NLog;
 using System.Windows.Forms;
+using System.IO;
 
 namespace CruiserMove
 {
@@ -88,11 +89,8 @@ namespace CruiserMove
                 }
                 catch(DockNotFoundException ex)
                 {
+                    logger.Warn($"Док {dockPlace.Text} не найден");
                     MessageBox.Show(ex.Message, "Не найдено", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -149,11 +147,6 @@ namespace CruiserMove
                         Draw();
                         logger.Info($"Добавлен крейсер {cruiser}");
                     }
-                    else
-                    {
-                        logger.Warn($"Крейсер не удалось поставить: {cruiser}");
-                        throw new DockOverflowException();
-                    }
                 }
                 catch(DockOverflowException ex)
                 {
@@ -173,9 +166,10 @@ namespace CruiserMove
                     MessageBox.Show("Сохранение прошло успешно", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     logger.Info("Сохранено в файл " + saveFileDialog.FileName);
                 }
-                catch(Exception ex)
+                catch(FileNotFoundException ex)
                 {
-                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn("Файл не найден");
+                    MessageBox.Show(ex.Message, "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -200,6 +194,11 @@ namespace CruiserMove
                 {
                     logger.Warn($"Док переполнен, невозможно добавить крейсер");
                     MessageBox.Show(ex.Message, "Док переполнен", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (FileNotFoundException ex)
+                {
+                    logger.Warn("Файл не найден");
+                    MessageBox.Show(ex.Message, "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
