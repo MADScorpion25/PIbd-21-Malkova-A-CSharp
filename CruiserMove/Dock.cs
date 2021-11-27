@@ -59,15 +59,14 @@ namespace CruiserMove
         /// <param name="p">Парковка</param>
         /// <param name="cruiser">Добавляемый крейсер</param>
         /// <returns></returns>
-        public static int operator +(Dock<T> p, T cruiser)
+        public static bool operator +(Dock<T> p, T cruiser)
         {
-            if (p._maxCount <= p._places.Count) return -1;
-            for(int i = 0; i < p._places.Count + 1; i++)
+            if(p._places.Count >= p._maxCount)
             {
-                p._places.Add(cruiser);
-                return i;
+                throw new DockOverflowException();
             }
-            return -1;
+            p._places.Add(cruiser);
+            return true;
         }
         /// <summary>
         /// Перегрузка оператора вычитания
@@ -78,16 +77,13 @@ namespace CruiserMove
         /// <returns></returns>
         public static T operator -(Dock<T> p, int index)
         {
-            T removedCruiser;
-
-            if (index > -1 && index < p._places.Count && p._places[index] != null)
+            if(index < -1 || index > p._places.Count)
             {
-                removedCruiser = p._places[index];
-                p._places.RemoveAt(index);
-                return removedCruiser;
+                throw new DockNotFoundException(index);
             }
-            return null;
-
+            T removedCruiser = p._places[index];
+            p._places.RemoveAt(index);
+            return removedCruiser;
         }
         /// <summary>
         /// Метод отрисовки парковки

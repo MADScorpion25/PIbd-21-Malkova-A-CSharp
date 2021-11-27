@@ -6,14 +6,16 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NLog;
 using System.Windows.Forms;
+using System.IO;
 
 namespace CruiserMove
 {
     public partial class FormDock : Form
     {
         private readonly DockCollection dockCollection;
-
+        private readonly Logger logger;
         /// <summary>
         /// Объект от класса-парковки
         /// </summary>
@@ -23,6 +25,7 @@ namespace CruiserMove
             InitializeComponent();
             dockCollection = new DockCollection(dockBox.Width,
            dockBox.Height);
+            logger = LogManager.GetCurrentClassLogger();
         }
         /// <summary>
         /// Заполнение listBoxLevels
@@ -71,15 +74,23 @@ namespace CruiserMove
         {
             if (listBoxDocks.SelectedIndex > -1 && dockPlace.Text != "")
             {
-                var cruiser = dockCollection[listBoxDocks.SelectedItem.ToString()] -
-               Convert.ToInt32(dockPlace.Text);
-                if (cruiser != null)
+                try
                 {
-                    FormCruiser form = new FormCruiser();
-                    form.SetCruiser(cruiser, 100, 100);
-                    form.ShowDialog();
+                    var cruiser = dockCollection[listBoxDocks.SelectedItem.ToString()] - Convert.ToInt32(dockPlace.Text);
+                    if (cruiser != null)
+                    {
+                        FormCruiser form = new FormCruiser();
+                        form.SetCruiser(cruiser, 100, 100);
+                        form.ShowDialog();
+                        logger.Info($"Изъят крейсер {cruiser} с места { dockPlace.Text}");
+                    }
+                    Draw();
                 }
-                Draw();
+                catch(DockNotFoundException ex)
+                {
+                    logger.Warn($"Док {dockPlace.Text} не найден");
+                    MessageBox.Show(ex.Message, "Не найдено", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private void addDock_Click(object sender, EventArgs e)
@@ -91,6 +102,7 @@ namespace CruiserMove
                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            logger.Info($"Добавили парковку {dockName.Text}");
             dockCollection.AddDock(dockName.Text);
             ReloadLevels();
         }
@@ -100,6 +112,8 @@ namespace CruiserMove
             {
                 if (MessageBox.Show($"Удалить док { listBoxDocks.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    logger.Info($"Удалили парковку { listBoxDocks.SelectedItem.ToString()}");
+
                     dockCollection.DelDock(listBoxDocks.SelectedItem.ToString());
                     if (listBoxDocks.Items.Count == 1)
                     {
@@ -112,6 +126,7 @@ namespace CruiserMove
         }
         private void listBoxDocks_SelectedIndexChanged(object sender, EventArgs e)
         {
+            logger.Info($"Перешли на парковку { listBoxDocks.SelectedItem.ToString()} ");
             Draw();
         }
         private void setCruiserButton_Click(object sender, EventArgs e)
@@ -124,49 +139,58 @@ namespace CruiserMove
         {
             if (cruiser != null && listBoxDocks.SelectedIndex > -1)
             {
-                if ( dockCollection[listBoxDocks.SelectedItem.ToString()] + cruiser > -1)
+                try
                 {
-                    Draw();
+                    if (dockCollection[listBoxDocks.SelectedItem.ToString()] + cruiser)
+                    {
+                        Draw();
+                        logger.Info($"Добавлен крейсер {cruiser}");
+                    }
                 }
-                else
+                catch(DockOverflowException ex)
                 {
-                    MessageBox.Show("Крейсер не удалось поставить");
+                    logger.Warn($"Док переполнен, невозможно добавить крейсер {cruiser}");
+                    MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
-
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (dockCollection.SaveData(saveFileDialog.FileName))
+                try
                 {
-                    MessageBox.Show("Сохранение прошло успешно", "Результат",
-                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dockCollection.SaveData(saveFileDialog.FileName);
+                    MessageBox.Show("Сохранение прошло успешно", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    logger.Info("Сохранено в файл " + saveFileDialog.FileName);
                 }
-                else
+                catch(FileNotFoundException ex)
                 {
-                    MessageBox.Show("Не сохранилось", "Результат",
-                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn("Файл не найден");
+                    MessageBox.Show(ex.Message, "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
-
         private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (dockCollection.LoadData(openFileDialog.FileName))
+                try
                 {
-                    MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,
-                   MessageBoxIcon.Information);
+                    dockCollection.LoadData(openFileDialog.FileName);
+                    MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ReloadLevels();
                     Draw();
                 }
-                else
+                catch (DockOverflowException ex)
                 {
-                    MessageBox.Show("Не загрузили", "Результат", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
+                    logger.Warn($"Док переполнен, невозможно добавить крейсер");
+                    MessageBox.Show(ex.Message, "Док переполнен", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (FileNotFoundException ex)
+                {
+                    logger.Warn("Файл не найден");
+                    MessageBox.Show(ex.Message, "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
