@@ -152,6 +152,10 @@ namespace CruiserMove
                     logger.Warn($"Док переполнен, невозможно добавить крейсер {cruiser}");
                     MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                catch (DockAlreadyHaveException ex)
+                {
+                    MessageBox.Show(ex.Message, "Дублирование", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -192,6 +196,16 @@ namespace CruiserMove
                     logger.Warn("Файл не найден");
                     MessageBox.Show(ex.Message, "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void sorting_Click(object sender, EventArgs e)
+        {
+            if (listBoxDocks.SelectedIndex > -1)
+            {
+                dockCollection[listBoxDocks.SelectedItem.ToString()].Sort();
+                Draw();
+                logger.Info("Сортировка уровней");
             }
         }
     }

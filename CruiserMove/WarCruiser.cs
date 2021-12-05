@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CruiserMove
 {
-    public class WarCruiser : CruiserSimp
+    public class WarCruiser : CruiserSimp, IEquatable<WarCruiser>
     {
         public Color DopColor { private set; get; }
         /// <summary>
@@ -108,6 +108,30 @@ namespace CruiserMove
         public override string ToString()
         {
             return $"{base.ToString()}{separator}{DopColor.Name}{separator}{Locator}{separator}{HelicopterStation}{separator}{Artillery}";
+        }
+
+        public bool Equals(WarCruiser other)
+        {
+            if (!base.Equals((CruiserSimp)other)){
+                return false;
+            }
+            else if (HelicopterStation != other.HelicopterStation)
+            {
+                return false;
+            }
+            else if (Artillery != other.Artillery)
+            {
+                return false;
+            }
+            else if (Locator != other.Locator)
+            {
+                return false;
+            }
+            else if (DopColor != other.DopColor)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

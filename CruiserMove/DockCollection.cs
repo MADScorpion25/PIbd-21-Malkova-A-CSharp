@@ -96,8 +96,7 @@ namespace CruiserMove
                 foreach (var level in dockStages)
                 {
                     fs.Write($"Dock{separator}{level.Key}{Environment.NewLine}", fs);
-                    ITransport cruiser = null;
-                    for (int i = 0; (cruiser = level.Value.GetNext(i)) != null; i++)
+                    foreach (ITransport cruiser in level.Value)
                     {
                         if (cruiser != null)
                         {
