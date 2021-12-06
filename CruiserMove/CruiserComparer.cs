@@ -10,22 +10,25 @@ namespace CruiserMove
     {
         public int Compare(Vehicle x, Vehicle y)
         {
-            if(x.GetType().Name.Equals(nameof(CruiserSimp)) && y.GetType().Name.Equals(nameof(WarCruiser)))
-            {
-                return 1;
-            }
-            else if(y.GetType().Name.Equals(nameof(CruiserSimp)) && x.GetType().Name.Equals(nameof(WarCruiser)))
+            if (x is CruiserSimp && y is WarCruiser)
             {
                 return -1;
+
             }
-            if(x.MaxSpeed <= y.MaxSpeed)
+            if (x is WarCruiser && y is CruiserSimp)
             {
                 return 1;
+
             }
-            else if(x.MaxSpeed > y.MaxSpeed)
+            if (x is CruiserSimp && y is CruiserSimp)
             {
-                return -1;
+                return ComparerCruiser((CruiserSimp)x, (CruiserSimp)y);
             }
+            if (x is WarCruiser && y is WarCruiser)
+            {
+                return ComparerWarCruiser((WarCruiser)x, (WarCruiser)y);
+            }
+
             return 0;
         }
         private int ComparerCruiser(CruiserSimp x, CruiserSimp y)
