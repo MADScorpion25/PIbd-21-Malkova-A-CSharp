@@ -139,7 +139,7 @@ namespace CruiserMove
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            
         }
 
         public bool MoveNext()
@@ -156,8 +156,6 @@ namespace CruiserMove
         {
             currentIndex = -1;
         }
-
-
 
         public IEnumerator<T> GetEnumerator()
         {

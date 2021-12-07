@@ -113,7 +113,6 @@ namespace CruiserMove
                 if (MessageBox.Show($"Удалить док { listBoxDocks.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     logger.Info($"Удалили парковку { listBoxDocks.SelectedItem.ToString()}");
-
                     dockCollection.DelDock(listBoxDocks.SelectedItem.ToString());
                     if (listBoxDocks.Items.Count == 1)
                     {
@@ -121,7 +120,6 @@ namespace CruiserMove
                     }
                     ReloadLevels();
                 }
-
             }
         }
         private void listBoxDocks_SelectedIndexChanged(object sender, EventArgs e)
