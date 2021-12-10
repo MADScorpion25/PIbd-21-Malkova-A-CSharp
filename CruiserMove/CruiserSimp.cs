@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CruiserMove
 {
-    public class CruiserSimp : Vehicle
+    public class CruiserSimp : Vehicle, IEquatable<CruiserSimp>
     {
         /// <summary>
         /// Ширина отрисовки крейсера
@@ -134,6 +134,46 @@ namespace CruiserMove
         public override string ToString()
         {
             return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
+        }
+
+        public bool Equals(CruiserSimp other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            return true;
+        }
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is CruiserSimp cruiserObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(cruiserObj);
+            }
         }
     }
 }

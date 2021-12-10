@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -96,8 +97,7 @@ namespace CruiserMove
                 foreach (var level in dockStages)
                 {
                     fs.Write($"Dock{separator}{level.Key}{Environment.NewLine}", fs);
-                    ITransport cruiser = null;
-                    for (int i = 0; (cruiser = level.Value.GetNext(i)) != null; i++)
+                    foreach (ITransport cruiser in level.Value)
                     {
                         if (cruiser != null)
                         {
@@ -115,7 +115,6 @@ namespace CruiserMove
                 }
             }
         }
-
         public void LoadData(string filename)
         {
             if (!File.Exists(filename))

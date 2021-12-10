@@ -46,6 +46,7 @@ namespace CruiserMove
             this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.sorting = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dockBox)).BeginInit();
             this.takeCruiser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -199,11 +200,22 @@ namespace CruiserMove
             // 
             this.saveFileDialog.Filter = "text Files|*txt";
             // 
+            // sorting
+            // 
+            this.sorting.Location = new System.Drawing.Point(1088, 301);
+            this.sorting.Name = "sorting";
+            this.sorting.Size = new System.Drawing.Size(158, 68);
+            this.sorting.TabIndex = 11;
+            this.sorting.Text = "Sorting";
+            this.sorting.UseVisualStyleBackColor = true;
+            this.sorting.Click += new System.EventHandler(this.sorting_Click);
+            // 
             // FormDock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1268, 682);
+            this.Controls.Add(this.sorting);
             this.Controls.Add(this.setCruiserButton);
             this.Controls.Add(this.removeDock);
             this.Controls.Add(this.listBoxDocks);
@@ -245,5 +257,6 @@ namespace CruiserMove
         private System.Windows.Forms.ToolStripMenuItem загрузитьToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.Button sorting;
     }
 }

@@ -54,8 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CruiserComparer.cs" />
     <Compile Include="CruiserSimp.cs" />
     <Compile Include="Direction.cs" />
+    <Compile Include="DockAlreadyHaveException.cs" />
     <Compile Include="DockNotFoundException.cs" />
     <Compile Include="DockOverflowException.cs" />
     <Compile Include="FormCruiser.cs">

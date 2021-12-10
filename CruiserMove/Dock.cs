@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace CruiserMove
     /// Параметризованный класс для хранения набора объектов от интерфейса ITransport
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public partial class Dock<T> where T : class, ITransport
+    public partial class Dock<T> : IEnumerator<T>, IEnumerable<T> where T : class, ITransport
     {
         /// <summary>
         /// Список объектов, которые храним
@@ -41,6 +42,12 @@ namespace CruiserMove
         /// Конструктор
         /// </summary>
         private readonly int _parkPlacesWidth = 3;
+        private int currentIndex;
+
+        public T Current => _places[currentIndex];
+
+        object IEnumerator.Current => _places[currentIndex];
+
         /// <param name="picWidth">Рамзер парковки - ширина</param>
         /// <param name="picHeight">Рамзер парковки - высота</param>
         public Dock(int picWidth, int picHeight)
@@ -51,6 +58,7 @@ namespace CruiserMove
             pictureWidth = picWidth;
             pictureHeight = picHeight;
             _places = new List<T>();
+            currentIndex = -1;
         }
         /// <summary>
         /// Перегрузка оператора сложения
@@ -64,6 +72,10 @@ namespace CruiserMove
             if(p._places.Count >= p._maxCount)
             {
                 throw new DockOverflowException();
+            }
+            if (p._places.Contains(cruiser))
+            {
+                throw new DockAlreadyHaveException();
             }
             p._places.Add(cruiser);
             return true;
@@ -113,7 +125,9 @@ namespace CruiserMove
                (pictureHeight / _placeSizeHeight) * _placeSizeHeight);
             }
         }
-      
+
+        public void Sort() => _places.Sort((IComparer<T>)new CruiserComparer());
+
         public T GetNext(int index)
         {
             if (index < 0 || index >= _places.Count)
@@ -123,5 +137,34 @@ namespace CruiserMove
             return _places[index];
         }
 
+        public void Dispose()
+        {
+            
+        }
+
+        public bool MoveNext()
+        {
+            if(currentIndex < _places.Count - 1)
+            {
+                currentIndex++;
+                return true;
+            }
+            return false;
+        }
+
+        public void Reset()
+        {
+            currentIndex = -1;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return this;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this;
+        }
     }
 }
